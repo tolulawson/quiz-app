@@ -1,11 +1,11 @@
 {
-  "name": "Live Capture",
-  "short_name": "Live Capture",
-  "description": "Collect, store and transmit data at live events and on the field, offline-first.",
+  "name": "Sanofi Quiz",
+  "short_name": "Sanofi Quiz",
+  "description": "An app for administering quizes by Sanofi medical representatives to their stakeholders.",
   "lang": "en",
   "start_url": "/",
   "display": "fullscreen",
-  "theme_color": "#EE493E",
+  "theme_color": "#2E1D5F",
   "icons": [
    {
     "src": "/android-icon-36x36.png",
