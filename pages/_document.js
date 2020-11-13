@@ -23,11 +23,14 @@ class MyDocument extends Document {
         <meta name="screen-orientation" content="portrait" />
         <meta name="theme-color" content="#2E1D5F" />
 
-        <link rel="apple-touch-icon" href="/icons/touch-icon-iphone.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/icons/touch-icon-ipad.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/icons/touch-icon-iphone-retina.png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="/icons/touch-icon-ipad-retina.png" />
-        <link rel="apple-touch-startup-image" href="/icons/launch.png" />
+        <link rel="apple-touch-icon" href="/icons/192.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/icons/144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/icons/152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/180.png" />
+        <link rel="apple-touch-icon" sizes="512x512" href="/icons/512.png" />
+        <link rel="apple-touch-icon" sizes="1024x1024" href="/icons/1024.png" />
+        <link rel="apple-touch-icon" sizes="167x167" href="/icons/167.png" />
+
         <link
           rel="apple-touch-startup-image"
           media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
