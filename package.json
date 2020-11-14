@@ -9,13 +9,23 @@
   },
   "dependencies": {
     "dexie": "^3.0.2",
+    "framer-motion": "^2.9.4",
     "next": "10.0.0",
     "next-pwa": "^3.1.5",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-hook-form": "^6.11.0",
+    "react-quiz-component-remix": "^0.3.7",
+    "restater": "^0.0.7",
+    "use-persisted-state": "^0.3.0"
   },
   "devDependencies": {
-    "eslint": "^7.12.1",
-    "eslint-plugin-react": "^7.21.5"
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "sass": "^1.29.0"
   }
 }
