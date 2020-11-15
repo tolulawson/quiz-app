@@ -23,6 +23,7 @@ export const quiz = {
         "Methocarbamol"
       ],
       "correctAnswer": "2",
+      "point": "10",
       "questionType": "text"
     },
     {
@@ -34,7 +35,8 @@ export const quiz = {
         "False"
       ],
       "correctAnswer": "1",
-      "point": "10"
+      "point": "10",
+      "questionType": "text"
     },
     {
       "question": "Which of the following is not an indication of Ibucap Forte?",
@@ -47,7 +49,8 @@ export const quiz = {
         "None of the above"
       ],
       "correctAnswer": "4",
-      "point": "10"
+      "point": "10",
+      "questionType": "text",
     }
   ],
   "quizTitle": "Welcome to the Sanofi Product Quiz",

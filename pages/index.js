@@ -2,8 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import PlayerContext from '../js/playerContext';
 
-export default function Home({ player: { setPlayerInfo } }) {
+export default function Home({ rep: { rep, setRep } }) {
+  const { setPlayer } = React.useContext(PlayerContext);
   const {
     register,
     handleSubmit,
@@ -20,13 +22,20 @@ export default function Home({ player: { setPlayerInfo } }) {
   });
   const router = useRouter();
   const onSubmit = (data) => {
-    setPlayerInfo(data);
+    setPlayer(data);
     router.push('/game');
   };
 
-  React.useEffect(() => {
-    setPlayerInfo(null);
-  }, []);
+  // React.useEffect(() => {
+  //   setRep(null);
+  // }, []);
+
+  const [repInput, setRepInput] = React.useState('');
+  const handleRepInputChange = (e) => setRepInput(e.target.value);
+  const handleRepInputSubmit = (e) => {
+    e.preventDefault();
+    setRep(repInput);
+  };
 
   return (
     <motion.div className='init-page'>
@@ -72,6 +81,15 @@ export default function Home({ player: { setPlayerInfo } }) {
         </motion.button>
       </motion.form>
       <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
+      {
+        !rep && (
+          <motion.form className='rep-setup' onSubmit={handleRepInputSubmit}>
+            <motion.h3>Enter your Sanofi email to begin</motion.h3>
+            <motion.input type='email' onChange={handleRepInputChange} value={repInput} className='rep-input' placeholder='Email address' />
+            <motion.input type='submit' value='Submit' className='action-btn' />
+          </motion.form>
+        )
+      }
     </motion.div>
   );
 }

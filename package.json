@@ -17,6 +17,7 @@
     "react-hook-form": "^6.11.0",
     "react-quiz-component-remix": "^0.3.7",
     "restater": "^0.0.7",
+    "use-http": "^1.0.15",
     "use-persisted-state": "^0.3.0"
   },
   "devDependencies": {

@@ -39,6 +39,57 @@ a {
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  position: relative;
+
+  .rep-setup {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h3 {
+      font-weight: 400;
+      font-size: 1.7rem;
+      margin-bottom: 3rem;
+    }
+
+    .rep-input {
+      background: #FFFFFF;
+      border: 1px solid #E0E0E0;
+      box-sizing: border-box;
+      border-radius: 2rem;
+      line-height: 3rem;
+      width: 50%;
+      font-size: 1.1rem;
+      padding: 0 1rem;
+      text-align: center;
+      color: #605d5d;
+      margin-bottom: 1rem;
+
+      &::placeholder {
+        color: #b6b2b2;
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 1.5pt #5A37BC;
+        outline: none;
+      }
+
+    }
+
+    .error-message {
+      color: #f44336;
+      font-size: 0.7rem;
+      margin: -0.2rem 0 0.5rem;
+      text-align: center;
+    }
+  }
 
   .init-form {
     max-width: 30rem;
@@ -180,6 +231,36 @@ a {
   .react-quiz-container {
     max-width: 670px;
     width: 90%;
+
+    .startQuizBtn {
+      align-self: center;
+      width: 40%;
+      margin-top: 7rem;
+      background: #5A37BC;
+      border-radius: 28px;
+      line-height: 3rem;
+      padding: 0 3rem;
+      border: none;
+      color: #fff;
+      width: 20%;
+      min-width: 10rem;
+      font-weight: 900;
+      position: relative;
+      font-size: 1.2rem;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background-image: url('../public/img/arrow.svg');
+        background-size: contain;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-repeat: no-repeat;
+      }
+    }
 
     div {
       display: flex;
@@ -432,7 +513,7 @@ a {
 
 }
 
-.action-btn {
+.action-btn, {
   background: #5A37BC;
   border-radius: 28px;
   line-height: 3rem;
@@ -462,5 +543,33 @@ a {
   &.refresh::after {
     background-image: url('../public/img/home.svg');
     left: 1rem;
+  }
+}
+
+.leaderboard-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  .header {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 2.5rem;
+
+    img {
+      width: 2.5rem;
+      margin-right: 1.5rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: 900;
+      font-size: 2.5rem;
+      line-height: 1;
+    }
   }
 }

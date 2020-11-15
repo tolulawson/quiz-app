@@ -2,20 +2,31 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Quiz from 'react-quiz-component-remix';
+import Dexie from 'dexie';
 import { quiz } from '../js/questions';
+import { formatTime } from '../js/utils';
+import PlayerContext from '../js/playerContext';
 
-export default function Home({ player: { playerInfo } }) {
+export default function Game({ rep: { rep } }) {
   const router = useRouter();
+  const localdb = React.useRef(new Dexie('sanofi-quiz')).current;
+
+  const { player } = React.useContext(PlayerContext);
+
   React.useEffect(() => {
-    if (!playerInfo) {
+    if (!player.name) {
       router.push('/');
+      return;
     }
+    localdb.version(1).stores({
+      quiz: '++,name,pharmacy,email,result,time,timestamp,uploaded,identifier',
+      leaderboard: '++,name,points,time',
+    });
   }, []);
 
   const [timeTaken, setTimeTaken] = React.useState(0);
   const [, setStart] = React.useState(false);
   const [finished, setFinished] = React.useState(false);
-  const [quizRecords, setQuizRecords] = React.useState(null);
 
   const timerRef = React.useRef();
   const handleQuizStart = () => {
@@ -25,49 +36,92 @@ export default function Home({ player: { playerInfo } }) {
     timerRef.current = id;
     setStart(true);
   };
+  let firstEndQuizCall = false;
   const handleQuizEnd = (result) => {
-    clearInterval(timerRef.current);
+    if (!firstEndQuizCall) {
+      firstEndQuizCall = true;
+      return;
+    }
     setFinished(true);
-  }
-
-  const formatTime = (t) => {
-    const secNum = parseInt(t, 10); // don't forget the second param
-    let hours = Math.floor(secNum / 3600);
-    let minutes = Math.floor((secNum - (hours * 3600)) / 60);
-    let seconds = secNum - (hours * 3600) - (minutes * 60);
-
-    if (hours < 10) { hours = `0${hours}`; }
-    if (minutes < 10) { minutes = `0${minutes}`; }
-    if (seconds < 10) { seconds = `0${seconds}`; }
-    return `${minutes}:${seconds}`;
+    clearInterval(timerRef.current);
+    localdb.quiz.put({
+      name: player.name,
+      pharmacy: player.pharmacy,
+      email: player.email,
+      result,
+      time: timeTaken,
+      timestamp: Date.now(),
+      uploaded: false,
+    })
+      .then((key) => {
+        localdb.quiz.get(key)
+          .then((record) => {
+            fetch('https://api.airtable.com/v0/appN5P8Wz0xWaeteN/Quiz%20Records', {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                records: [
+                  {
+                    fields: {
+                      Name: record.name,
+                      'Pharmacy Name': record.pharmacy,
+                      Timestamp: new Date(record.timestamp).toLocaleString(),
+                      'Time Taken (s)': String(record.time),
+                      Score: String(record.result.correctPoints),
+                      Email: record.email,
+                      Rep: rep,
+                      Questions: record.result.questions.map((item) => `"${item.question}"`).join(', '),
+                      Responses: record.result.userInput.map((item) => `"${String(item)}"`).join(', '),
+                    },
+                  },
+                ],
+              }),
+            })
+              .then((res) => res.json())
+              .then(() => {
+                localdb.quiz.update(key, {
+                  uploaded: true,
+                });
+              });
+          });
+      });
   };
 
   return (
     <motion.div className='game-page'>
-      <motion.div className='hud'>
-        <motion.div className='name-group hud-item'>
-          <motion.img src='/img/person.svg' />
-          {playerInfo && playerInfo.name}
-        </motion.div>
-        <motion.div className='time-group hud-item'>
-          <motion.img src='/img/alarm.svg' className='alarm' />
-          {formatTime(timeTaken)}
-        </motion.div>
-      </motion.div>
-      <Quiz
-        quiz={quiz}
-        shuffle
-        onStart={handleQuizStart}
-        onComplete={handleQuizEnd}
-      />
       {
-        finished && (
-          <motion.button className='action-btn refresh' onClick={() => router.push('/')}>
-            Home
-          </motion.button>
+        player.name && (
+          <>
+            <motion.div className='hud'>
+              <motion.div className='name-group hud-item'>
+                <motion.img src='/img/person.svg' />
+                {player && player.name}
+              </motion.div>
+              <motion.div className='time-group hud-item'>
+                <motion.img src='/img/alarm.svg' className='alarm' />
+                {formatTime(timeTaken)}
+              </motion.div>
+            </motion.div>
+            <Quiz
+              quiz={quiz}
+              shuffle
+              onStart={handleQuizStart}
+              onComplete={handleQuizEnd}
+            />
+            {
+              finished && (
+                <motion.button className='action-btn refresh' onClick={() => router.push('/')}>
+                  Home
+                </motion.button>
+              )
+            }
+            <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
+          </>
         )
       }
-      <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
     </motion.div>
   );
 }

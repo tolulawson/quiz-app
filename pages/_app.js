@@ -1,21 +1,27 @@
+import React from 'react';
 import '../styles/globals.scss';
 import createPersistedState from 'use-persisted-state';
+import PlayerContext from '../js/playerContext';
 
-const usePlayerInfoState = createPersistedState('playerInfo');
+const useRepState = createPersistedState('rep');
 
-const usePlayerInfo = (info) => {
-  const [playerInfo, setPlayerInfo] = usePlayerInfoState(info);
-
+const useRep = (repName) => {
+  const [rep, setRep] = useRepState(repName);
   return {
-    playerInfo,
-    setPlayerInfo,
+    rep,
+    setRep,
   };
 };
 
 function MyApp({ Component, pageProps }) {
-  const player = usePlayerInfo({});
+  const rep = useRep('');
+  const [player, setPlayerInfo] = React.useState({});
+  const setPlayer = ((playerInfo) => setPlayerInfo(playerInfo));
+
   return (
-    <Component {...pageProps} player={player} />
+    <PlayerContext.Provider value={{ player, setPlayer }}>
+      <Component {...pageProps} rep={rep} />
+    </PlayerContext.Provider>
   );
 }
 

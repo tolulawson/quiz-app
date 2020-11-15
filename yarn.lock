@@ -2854,7 +2854,7 @@ detect-libc@^1.0.3:
 
 dexie@^3.0.2:
   version "3.0.2"
-  resolved "https://registry.yarnpkg.com/dexie/-/dexie-3.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/dexie/-/dexie-3.0.2.tgz#4b979904d739e0530b68352005f175a82633a075"
   integrity sha512-go4FnIoAhcUiCdxutfIZRxnSaSyDgfEq+GH7N0I8nTCJbC2FmeBj+0FrETa3ln5ix+VQMOPsFeYHlgE/8SZWwQ==
 
 diffie-hellman@^5.0.0:
@@ -6886,12 +6886,31 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
+urs@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/urs/-/urs-0.0.7.tgz#2dbf320a68a54bbd67ab9c5ac103b0f2227ca6be"
+  integrity sha512-NDwuby5BP7D60RjHlow8Gch4yfglLdCpZagGeVDZNcL+jsA2v6RcBhPTJraqq1oQ1U3LT1bQfgmwgNUUIFht+g==
+
+use-http@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/use-http/-/use-http-1.0.15.tgz#c30c79f41583d9601dc074aee8750317a99231a3"
+  integrity sha512-Gw0QyPELU9Zkr7oQrMDNfseWbBnNnzimG8H4jtLwjI9ZwdiCDOfUO4D4puFG92HIcTIRKnT7P0KsbqO8uMGbrg==
+  dependencies:
+    urs "^0.0.7"
+    use-ssr "^1.0.22"
+    utility-types "^3.10.0"
+
 use-persisted-state@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/use-persisted-state/-/use-persisted-state-0.3.0.tgz#f8e3d2fd8eee67e0c86fd596c3ea3e8121c07402"
   integrity sha512-UlWEq0JYg7NbvcRBZ1g6Bwe4SEbYfr1wr/D5mrmfCzSxXSwsPRYygGLlsxHcW58Rf7gGwRPBT23sNVvyVn4WYg==
   dependencies:
     "@use-it/event-listener" "^0.1.2"
+
+use-ssr@^1.0.22:
+  version "1.0.23"
+  resolved "https://registry.yarnpkg.com/use-ssr/-/use-ssr-1.0.23.tgz#3bde1e10cd01b3b61ab6386d7cddb72e74828bf8"
+  integrity sha512-5bvlssgROgPgIrnILJe2mJch4e2Id0/bVm1SQzqvPvEAXmlsinCCVHWK3a2iHcPat7PkdJHBo0gmSmODIz6tNA==
 
 use-subscription@1.5.0:
   version "1.5.0"
@@ -6923,6 +6942,11 @@ util@^0.11.0:
   integrity sha512-HShAsny+zS2TZfaXxD9tYj4HQGlBezXZMZuM/S5PKLLoZkShZiGk9o5CzukI1LVHZvjdvZ2Sj1aW/Ndn2NB/HQ==
   dependencies:
     inherits "2.0.3"
+
+utility-types@^3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.10.0.tgz#ea4148f9a741015f05ed74fd615e1d20e6bed82b"
+  integrity sha512-O11mqxmi7wMKCo6HKFt5AhO4BwY3VV68YU07tgxfz8zJTIxr4BpsezN49Ffwy9j3ZpwwJp4fkRwjRzq3uWE6Rg==
 
 v8-compile-cache@^2.0.3:
   version "2.2.0"
