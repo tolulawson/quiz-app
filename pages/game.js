@@ -85,7 +85,8 @@ export default function Game({ rep: { rep } }) {
                 localdb.quiz.update(key, {
                   uploaded: true,
                 });
-              });
+              })
+              .catch(() => {})
           });
       });
   };

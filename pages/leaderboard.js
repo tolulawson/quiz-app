@@ -35,12 +35,10 @@ export default function Leaderboard() {
               });
           });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         localdb.leaderboard.toArray()
           .then((arr) => {
             setLeaderboardData(arr);
-            console.log(arr);
           });
       });
   }, []);
@@ -49,16 +47,21 @@ export default function Leaderboard() {
       <motion.div className='header'>
         <motion.img src='/img/leaderboard.svg' />
         <motion.h1>Leaderboard</motion.h1>
-        {
-          !leaderboardData
-            ? <motion.img src='//s.svgbox.net/loaders.svg?fill=805ad5&ic=spinner' />
-            : (
-              <motion.div className='leaderboard-table'>
-                <motion.div></motion.div>
-              </motion.div>
-            )
-        }
       </motion.div>
+      {
+        !leaderboardData
+          ? <motion.img src='//s.svgbox.net/loaders.svg?fill=805ad5&ic=spinner' className='spinner' />
+          : (
+            <motion.div className='leaderboard-table'>
+              <motion.div className='leaderboard-row'>
+                <motion.span>{1}</motion.span>
+                <motion.span>Tolulope Jerry Lawson</motion.span>
+                <motion.span>45pts</motion.span>
+                <motion.span>30s</motion.span>
+              </motion.div>
+            </motion.div>
+          )
+      }
     </motion.div>
   );
 }

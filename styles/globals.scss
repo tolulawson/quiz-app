@@ -572,4 +572,11 @@ a {
       line-height: 1;
     }
   }
+
+  .spinner {
+    width: 3rem;
+    position: absolute;
+    top: 40%;
+    transition: translateY(-50%);
+  }
 }
