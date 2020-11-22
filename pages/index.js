@@ -26,12 +26,6 @@ if (!firebase.apps.length) {
   db.settings({
     cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED,
   });
-  // if (window.location.hostname === 'localhost') {
-  //   db.settings({
-  //     host: 'localhost:8080',
-  //     ssl: false,
-  //   });
-  // }
   if (process.browser) {
     db.enablePersistence()
       .then(() => {
@@ -93,6 +87,9 @@ const readFromFirebase = ({ collection, document }) => new Promise((resolve, rej
 
 export default function Home({ rep: { rep, setRep } }) {
   const { setPlayer } = React.useContext(PlayerContext);
+  React.useEffect(() => {
+    setPlayer(null);
+  }, []);
   const {
     register,
     handleSubmit,

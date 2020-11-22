@@ -100,6 +100,7 @@ export default function Game({ rep: { rep } }) {
           </>
         )
       }
+      <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
     </motion.div>
   );
 }
