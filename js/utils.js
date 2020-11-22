@@ -26,4 +26,4 @@ const generateUUID = () => {
   });
 };
 
-export { formatTime, generateUUID }
+export { formatTime, generateUUID };

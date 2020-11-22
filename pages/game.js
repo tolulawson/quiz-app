@@ -6,6 +6,7 @@ import Dexie from 'dexie';
 import { quiz } from '../js/questions';
 import { formatTime } from '../js/utils';
 import PlayerContext from '../js/playerContext';
+import { addToFirebase, firebase } from './index';
 
 export default function Game({ rep: { rep } }) {
   const router = useRouter();
@@ -44,51 +45,20 @@ export default function Game({ rep: { rep } }) {
     }
     setFinished(true);
     clearInterval(timerRef.current);
-    localdb.quiz.put({
-      name: player.name,
-      pharmacy: player.pharmacy,
-      email: player.email,
-      result,
-      time: timeTaken,
-      timestamp: Date.now(),
-      uploaded: false,
+    addToFirebase({
+      collection: 'quiz',
+      data: {
+        id: player.id,
+        name: player.name,
+        pharmacy: player.pharmacy,
+        email: player.email,
+        result,
+        time: timeTaken,
+        timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+        rep,
+      },
     })
-      .then((key) => {
-        localdb.quiz.get(key)
-          .then((record) => {
-            fetch('https://api.airtable.com/v0/appN5P8Wz0xWaeteN/Quiz%20Records', {
-              method: 'POST',
-              headers: {
-                Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                records: [
-                  {
-                    fields: {
-                      Name: record.name,
-                      'Pharmacy Name': record.pharmacy,
-                      Timestamp: new Date(record.timestamp).toLocaleString(),
-                      'Time Taken (s)': String(record.time),
-                      Score: String(record.result.correctPoints),
-                      Email: record.email,
-                      Rep: rep,
-                      Questions: record.result.questions.map((item) => `"${item.question}"`).join(', '),
-                      Responses: record.result.userInput.map((item) => `"${String(item)}"`).join(', '),
-                    },
-                  },
-                ],
-              }),
-            })
-              .then((res) => res.json())
-              .then(() => {
-                localdb.quiz.update(key, {
-                  uploaded: true,
-                });
-              })
-              .catch(() => {})
-          });
-      });
+      .catch(() => {});
   };
 
   return (

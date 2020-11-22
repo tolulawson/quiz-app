@@ -232,10 +232,27 @@ a {
     max-width: 670px;
     width: 90%;
 
+    & > div:nth-child(1) {
+      h2 {
+        font-size: 2.5rem;
+      }
+
+      & > div {
+        &:nth-child(2n) {
+          font-size: 2rem;
+          margin-bottom: 7rem;
+        }
+
+        &:nth-child(2n + 1) {
+          font-size: 1rem;
+          margin-bottom: 3rem;
+        }
+      }
+    }
+
     .startQuizBtn {
       align-self: center;
       width: 40%;
-      margin-top: 7rem;
       background: #5A37BC;
       border-radius: 28px;
       line-height: 3rem;
@@ -296,8 +313,15 @@ a {
       .card-body {
 
         h2 {
-          font-weight: 400;
-          font-size: 3rem;
+          &:nth-child(1) {
+            font-weight: 400;
+            font-size: 2rem;
+          }
+
+          &:nth-child(2) {
+            font-weight: 400;
+            font-size: 3.5rem;
+          }
         }
 
         .quiz-result-filter, .result-answer-wrapper {
@@ -306,6 +330,7 @@ a {
       }
 
       .questionWrapperBody {
+        position: relative;
 
         h3 {
           margin: 0 0 3rem;
@@ -318,6 +343,29 @@ a {
           }
         }
 
+        .questionModal + div {
+          position: absolute;
+          top: 0.5rem;
+          left: -4vw;
+          overflow-x: hidden;
+          font-size: 2.5vw;
+          z-index: -1;
+
+          // &::before {
+          //   content: '';
+          //   background-image: url('../public/img/arrow.svg');
+          //   background-size: cover;
+          //   background-repeat: no-repeat;
+          //   width: 4rem;
+          //   height: 4rem;
+          //   background-position: center;
+          //   position: absolute;
+          //   overflow-x: visible;
+          //   z-index: 1;
+          //   border: 1px solid #fff;
+          // }
+        }
+
         .tag-container {
           display: none;
         }
@@ -328,7 +376,7 @@ a {
           @for $i from 1 through 4 {
             &:not(.nextQuestionBtn):nth-child(4n + #{$i})::before {
               position: absolute;
-              left: 0.5rem;
+              left: 0.4rem;
               top: 50%;
               transform: translateY(-50%);
               width: 2rem;
@@ -369,8 +417,21 @@ a {
             outline: none;
           }
 
+          @keyframes blink {
+            50% {
+                opacity: 0.3;
+            }
+          }
+
           &.answerBtn {
             width: 100%;
+            transition-duration: 0.1s;
+            transition-property: background-color, color, border-color, opacity, box-shadow;
+            transition-timing-function: ease-out;
+
+            &:focus {
+              animation: 0.25s ease 0s 2 normal none running blink;
+            }
 
             &.correct {
               background: green;
@@ -558,7 +619,7 @@ a {
   .header {
     display: flex;
     align-items: flex-end;
-    margin-top: 2.5rem;
+    margin: 2.5rem auto 4rem;
 
     img {
       width: 2.5rem;
@@ -570,6 +631,48 @@ a {
       font-weight: 900;
       font-size: 2.5rem;
       line-height: 1;
+    }
+  }
+
+  .leaderboard-table {
+    max-width: 600px;
+    width: 90%;
+
+    .leaderboard-row {
+      background: rgba(90, 55, 188, 0.29);
+      border-radius: 39px;
+      line-height: 3rem;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      width: 100%;
+      font-size: 1.2rem;
+
+      &:not(last-child) {
+        margin-bottom: 0.5rem;
+      }
+
+      span {
+        display: block;
+
+        &.serial {
+          width: 7%;
+        }
+
+        &.name {
+          width: 63%;
+        }
+
+        &.points {
+          width: 15%;
+          text-align: center;
+        }
+
+        &.time {
+          width: 15%;
+          text-align: center;
+        }
+      }
     }
   }
 

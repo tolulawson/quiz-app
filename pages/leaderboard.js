@@ -1,46 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Dexie from 'dexie';
+import { readFromFirebase } from './index';
+import PlayerContext from '../js/playerContext';
 
 export default function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = React.useState(null);
-  const localdb = React.useRef(new Dexie('sanofi-quiz')).current;
+  const { player } = React.useContext(PlayerContext);
 
   React.useEffect(() => {
-    localdb.version(1).stores({
-      quiz: '++,name,pharmacy,email,result,time,timestamp,uploaded,identifier',
-      leaderboard: '++,name,points,time',
-    });
-    fetch('https://api.airtable.com/v0/appN5P8Wz0xWaeteN/Quiz%20Records?maxRecords=10&view=Grid%20view', {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
-      },
-    })
-      .then((res) => res.json())
+    readFromFirebase({ collection: 'quiz' })
       .then((data) => {
-        const dat = data.records.map((record) => ({
-          name: record.fields.Name,
-          points: record.fields.Score,
-          time: record.fields['Time Taken (s)'],
-        }));
-
-        localdb.leaderboard.clear()
-          .then(() => {
-            localdb.leaderboard.bulkPut(dat)
-              .then(() => {
-                localdb.leaderboard.toArray()
-                  .then((arr) => {
-                    setLeaderboardData(arr);
-                  });
-              });
-          });
+        const sortedData = data.sort((a, b) => {
+          const divB = 10 ** String(b.time).length;
+          const divA = 10 ** String(a.time).length;
+          return (
+            b.result.correctPoints - (b.time / divB)) - (a.result.correctPoints - (a.time / divA)
+          );
+        })
+          .map((record, index) => ({ ...record, rank: index + 1 }));
+        const currentResult = sortedData.filter((record) => record.id === player.id);
+        const slicedData = sortedData.slice(0, 10);
+        if (player.id && !slicedData.filter((record) => record.id === player.id).length) {
+          slicedData.push(currentResult);
+        }
+        setLeaderboardData(slicedData);
       })
-      .catch(() => {
-        localdb.leaderboard.toArray()
-          .then((arr) => {
-            setLeaderboardData(arr);
-          });
-      });
+      .catch(() => {});
   }, []);
   return (
     <motion.div className='leaderboard-page'>
@@ -50,15 +35,19 @@ export default function Leaderboard() {
       </motion.div>
       {
         !leaderboardData
-          ? <motion.img src='//s.svgbox.net/loaders.svg?fill=805ad5&ic=spinner' className='spinner' />
+          ? <motion.img src='/img/loaders.svg' className='spinner' />
           : (
             <motion.div className='leaderboard-table'>
-              <motion.div className='leaderboard-row'>
-                <motion.span>{1}</motion.span>
-                <motion.span>Tolulope Jerry Lawson</motion.span>
-                <motion.span>45pts</motion.span>
-                <motion.span>30s</motion.span>
-              </motion.div>
+              {
+                leaderboardData.map((record) => (
+                  <motion.div className={player.id && record.id === player.id ? 'leaderboard-row' : 'leaderboard-row new'} key={record.id}>
+                    <motion.span className='serial'>{`${record.rank}.`}</motion.span>
+                    <motion.span className='name'>{record.name}</motion.span>
+                    <motion.span className='points'>{`${record.result.correctPoints}pts`}</motion.span>
+                    <motion.span className='time'>{`${record.time}s`}</motion.span>
+                  </motion.div>
+                ))
+            }
             </motion.div>
           )
       }
