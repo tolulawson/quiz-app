@@ -84,9 +84,16 @@ export default function Game({ rep: { rep } }) {
             />
             {
               finished && (
-                <motion.button className='action-btn refresh' onClick={() => router.push('/')}>
-                  Home
-                </motion.button>
+                <motion.div className='game-end-buttons'>
+                  <motion.button className='action-btn refresh' onClick={() => router.push('/leaderboard')}>
+                    <motion.img src='/img/leaderboard.svg' />
+                    Leaderboard
+                  </motion.button>
+                  <motion.button className='action-btn refresh' onClick={() => router.push('/')}>
+                    <motion.img src='/img/home.svg' />
+                    Home
+                  </motion.button>
+                </motion.div>
               )
             }
             <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />

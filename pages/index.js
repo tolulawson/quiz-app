@@ -176,6 +176,7 @@ export default function Home({ rep: { rep, setRep } }) {
           </motion.form>
         )
       }
+      <motion.img src='/img/home.svg' alt='home button' className='home-button' onClick={() => router.push('/')} />
     </motion.div>
   );
 }

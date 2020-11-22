@@ -32,6 +32,15 @@ a {
   min-width: 9rem;
 }
 
+.home-button {
+  position: absolute;
+  bottom: 3.5vh;
+  width: min(6vw,2.5rem);
+  left: 3vw;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
 .init-page {
   display: flex;
   flex-direction: column;
@@ -157,7 +166,7 @@ a {
     .submit-button {
       background: #5A37BC;
       border-radius: 28px;
-      line-height: 3rem;
+      line-height: 3.5rem;
       padding: 0 3rem;
       border: none;
       color: #fff;
@@ -230,7 +239,7 @@ a {
 
   .react-quiz-container {
     max-width: 670px;
-    width: 90%;
+    width: 80%;
 
     & > div:nth-child(1) {
       h2 {
@@ -255,7 +264,7 @@ a {
       width: 40%;
       background: #5A37BC;
       border-radius: 28px;
-      line-height: 3rem;
+      line-height: 3.5rem;
       padding: 0 3rem;
       border: none;
       color: #fff;
@@ -265,18 +274,18 @@ a {
       position: relative;
       font-size: 1.2rem;
 
-      &::after {
-        content: '';
-        position: absolute;
-        right: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        background-image: url('../public/img/arrow.svg');
-        background-size: contain;
-        width: 1.5rem;
-        height: 1.5rem;
-        background-repeat: no-repeat;
-      }
+      // &::after {
+      //   content: '';
+      //   position: absolute;
+      //   right: 1rem;
+      //   top: 50%;
+      //   transform: translateY(-50%);
+      //   background-image: url('../public/img/arrow.svg');
+      //   background-size: contain;
+      //   width: 1.5rem;
+      //   height: 1.5rem;
+      //   background-repeat: no-repeat;
+      // }
     }
 
     div {
@@ -577,34 +586,34 @@ a {
 .action-btn, {
   background: #5A37BC;
   border-radius: 28px;
-  line-height: 3rem;
-  padding: 0 3rem;
+  line-height: 3.5rem;
+  padding: 0 2rem;
   border: none;
   color: #fff;
-  width: 20%;
-  min-width: 10rem;
   font-weight: 900;
   position: relative;
   font-size: 1.2rem;
   margin-top: 1rem;
+  display: flex;
+  align-items: center;
 
-  &::after {
-    content: '';
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background-image: url('../public/img/arrow.svg');
-    background-size: contain;
-    width: 1.5rem;
-    height: 1.5rem;
-    background-repeat: no-repeat;
+  img {
+    margin-right: 1rem;
+    width: 1.3rem;
   }
 
-  &.refresh::after {
-    background-image: url('../public/img/home.svg');
-    left: 1rem;
-  }
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   right: 1rem;
+  //   top: 50%;
+  //   transform: translateY(-50%);
+  //   // background-image: url('../public/img/arrow.svg');
+  //   background-size: contain;
+  //   width: 1.5rem;
+  //   height: 1.5rem;
+  //   background-repeat: no-repeat;
+  // }
 }
 
 .leaderboard-page {
@@ -641,15 +650,20 @@ a {
     .leaderboard-row {
       background: rgba(90, 55, 188, 0.29);
       border-radius: 39px;
-      line-height: 3rem;
+      line-height: min(5.7vh, 2.7rem);
       display: flex;
       justify-content: space-between;
       padding: 0 1.5rem;
       width: 100%;
       font-size: 1.2rem;
 
+      &.new {
+        background: rgb(90 55 188 / 93%);
+        animation: 0.25s ease 0s 2 normal none running blink;
+      }
+
       &:not(last-child) {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.8vh;
       }
 
       span {
@@ -661,6 +675,10 @@ a {
 
         &.name {
           width: 63%;
+          white-space: nowrap;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow-x: hidden;
         }
 
         &.points {

@@ -1,11 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 import { readFromFirebase } from './index';
 import PlayerContext from '../js/playerContext';
 
 export default function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = React.useState(null);
   const { player } = React.useContext(PlayerContext);
+  const router = useRouter();
 
   React.useEffect(() => {
     readFromFirebase({ collection: 'quiz' })
@@ -40,7 +42,7 @@ export default function Leaderboard() {
             <motion.div className='leaderboard-table'>
               {
                 leaderboardData.map((record) => (
-                  <motion.div className={player.id && record.id === player.id ? 'leaderboard-row' : 'leaderboard-row new'} key={record.id}>
+                  <motion.div className={player.id && record.id === player.id ? 'leaderboard-row new' : 'leaderboard-row'} key={record.id}>
                     <motion.span className='serial'>{`${record.rank}.`}</motion.span>
                     <motion.span className='name'>{record.name}</motion.span>
                     <motion.span className='points'>{`${record.result.correctPoints}pts`}</motion.span>
@@ -51,6 +53,8 @@ export default function Leaderboard() {
             </motion.div>
           )
       }
+      <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
+      <motion.img src='/img/home.svg' alt='home button' className='home-button' onClick={() => router.push('/')} />
     </motion.div>
   );
 }
