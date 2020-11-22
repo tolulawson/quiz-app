@@ -172,7 +172,7 @@ export default function Home({ rep: { rep, setRep } }) {
           <motion.form className='rep-setup' onSubmit={handleRepInputSubmit}>
             <motion.h3>Enter your Sanofi email to begin</motion.h3>
             <motion.input type='email' onChange={handleRepInputChange} value={repInput} className='rep-input' placeholder='Email address' />
-            <motion.input type='submit' value='Submit' className='action-btn' />
+            <motion.input type='submit' value='Submit' className='action-btn rep-submit' />
           </motion.form>
         )
       }
