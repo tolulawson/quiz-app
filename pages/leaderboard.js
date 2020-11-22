@@ -21,7 +21,7 @@ export default function Leaderboard() {
         })
           .map((record, index) => ({ ...record, rank: index + 1 }));
         const currentResult = sortedData.filter((record) => record.id === player.id)[0];
-        // debugger;
+
         const slicedData = sortedData.slice(0, 10);
         if (player.id && !slicedData.filter((record) => record.id === player.id).length) {
           slicedData.push(currentResult);
