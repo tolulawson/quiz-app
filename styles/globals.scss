@@ -12,7 +12,7 @@ html {
   background-repeat: no-repeat;
   height: -webkit-fill-available;
   width: 100%;
-  overflow: hidden;
+  // overflow: hidden;
   color: #fff;
 }
 
@@ -451,17 +451,19 @@ a {
             transition-timing-function: ease-out;
 
             &:focus {
-              animation: 0.25s ease 0s 2 normal none running blink;
+
             }
 
             &.correct {
               background: green;
               color: white;
+              animation: 0.2s ease 0s 2 normal none running blink;
             }
 
             &.incorrect {
               background: red;
               color: white;
+              animation: 0.2s ease 0s 2 normal none running blink;
             }
 
             &:disabled {
@@ -677,7 +679,7 @@ a {
 
       &.new {
         background: rgb(90 55 188 / 93%);
-        animation: 0.25s ease 0s 2 normal none running blink;
+        animation: 0.25s ease 0s 6 normal none running blink;
       }
 
       &:not(last-child) {
