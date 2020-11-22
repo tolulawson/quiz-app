@@ -32,13 +32,18 @@ a {
   min-width: 9rem;
 }
 
-.home-button {
+.menu-button {
   position: absolute;
   bottom: 3.5vh;
-  width: min(6vw,2.5rem);
-  left: 3vw;
+  width: min(5vw,2.3rem);
   opacity: 0.3;
+  left: 4vw;
   cursor: pointer;
+
+  &.settings {
+    left: max(9vw,5.5rem);
+    width: min(4.5vw,2.2rem);
+  }
 }
 
 .init-page {
@@ -581,6 +586,12 @@ a {
     }
   }
 
+  .game-end-buttons {
+    display: flex;
+    width: 27rem;
+    justify-content: space-between;
+  }
+
 }
 
 .action-btn, {
@@ -691,6 +702,41 @@ a {
           text-align: center;
         }
       }
+    }
+  }
+
+  .spinner {
+    width: 3rem;
+    position: absolute;
+    top: 40%;
+    transition: translateY(-50%);
+  }
+}
+
+.records-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  .header {
+    display: flex;
+    align-items: flex-end;
+    margin: 2.5rem auto 2rem;
+
+    img {
+      width: 2.5rem;
+      margin-right: 1.5rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: 900;
+      font-size: 2.5rem;
+      line-height: 1;
     }
   }
 
