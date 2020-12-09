@@ -54,8 +54,9 @@ export default function Leaderboard() {
             </motion.div>
           )
       }
-      <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
+      <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo settings' />
       <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
+      <motion.img src='/img/table.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/records')} />
     </motion.div>
   );
 }

@@ -56,6 +56,7 @@ export default function Leaderboard() {
         onmousewheel=''
       />
       <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
+      <motion.img src='/img/leaderboard.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/leaderboard')} />
       <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
     </motion.div>
   );
