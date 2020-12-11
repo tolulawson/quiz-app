@@ -127,11 +127,12 @@ export default function Home({ rep: { rep, setRep } }) {
         <motion.div className='input-fields'>
           <motion.input
             type='text'
-            placeholder='Enter your name'
+            placeholder='Enter your full name'
             autoCapitalize='words'
             name='name'
             ref={register({ required: true })}
             autoComplete='off'
+            className='text'
           />
           {
             errors.name && <span className='error-message'>This field is required</span>
@@ -143,6 +144,7 @@ export default function Home({ rep: { rep, setRep } }) {
             name='pharmacy'
             ref={register({ required: true })}
             autoComplete='off'
+            className='text'
           />
           {
             errors.pharmacy && <span className='error-message'>This field is required</span>
@@ -153,10 +155,23 @@ export default function Home({ rep: { rep, setRep } }) {
             ref={register({ required: true })}
             placeholder='Email'
             autoComplete='off'
+            className='text'
           />
           {
             errors.email && <span className='error-message'>This field is required</span>
           }
+          <motion.label className='consent'>
+            <motion.input
+              type='checkbox'
+              name='consent'
+              ref={register({ required: true })}
+              className='consent-check'
+            />
+            I consent to the collection/use of the provided details for informational purposes
+          </motion.label>
+          {
+            errors.consent && <span className='error-message'>Check the box above to proceed</span>
+            }
         </motion.div>
         <motion.button type='submit' className='submit-button'>
           Start

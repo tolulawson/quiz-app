@@ -2,32 +2,39 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Quiz from 'react-quiz-component-remix';
-import Dexie from 'dexie';
 import { quiz } from '../js/questions';
 import { formatTime } from '../js/utils';
 import PlayerContext from '../js/playerContext';
 import { addToFirebase, firebase } from './index';
 
 export default function Game({ rep: { rep } }) {
+  const questionIndexes = [];
+  const selectedQuestions = [];
   const router = useRouter();
-  const localdb = React.useRef(new Dexie('sanofi-quiz')).current;
 
   const { player } = React.useContext(PlayerContext);
+
+  const [timeTaken, setTimeTaken] = React.useState(0);
+  const [, setStart] = React.useState(false);
+  const [finished, setFinished] = React.useState(false);
+  const [questions, setQuestions] = React.useState(null);
 
   React.useEffect(() => {
     if (!player.name) {
       router.push('/');
       return;
     }
-    localdb.version(1).stores({
-      quiz: '++,name,pharmacy,email,result,time,timestamp,uploaded,identifier',
-      leaderboard: '++,name,points,time',
-    });
-  }, []);
 
-  const [timeTaken, setTimeTaken] = React.useState(0);
-  const [, setStart] = React.useState(false);
-  const [finished, setFinished] = React.useState(false);
+    while (questionIndexes.length < 10) {
+      const r = Math.floor(Math.random() * 12);
+      if (questionIndexes.indexOf(r) === -1) {
+        questionIndexes.push(r);
+      }
+    }
+    questionIndexes.forEach((index) => selectedQuestions.push(quiz.questions[index]));
+    quiz.questions = selectedQuestions;
+    setQuestions(quiz);
+  }, []);
 
   const timerRef = React.useRef();
   const handleQuizStart = () => {
@@ -76,12 +83,16 @@ export default function Game({ rep: { rep } }) {
                 {formatTime(timeTaken)}
               </motion.div>
             </motion.div>
-            <Quiz
-              quiz={quiz}
-              shuffle
-              onStart={handleQuizStart}
-              onComplete={handleQuizEnd}
-            />
+            {
+              questions && (
+              <Quiz
+                quiz={questions}
+                shuffle
+                onStart={handleQuizStart}
+                onComplete={handleQuizEnd}
+              />
+              )
+            }
             {
               finished && (
                 <motion.div className='game-end-buttons'>

@@ -53,11 +53,10 @@ export default function Leaderboard() {
           opacity: `${loading ? 0 : 1}`,
           transition: 'opacity 0.5s ease',
         }}
-        onmousewheel=''
       />
       <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
-      <motion.img src='/img/leaderboard.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/leaderboard')} />
       <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
+      <motion.img src='/img/leaderboard.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/leaderboard')} />
     </motion.div>
   );
 }
