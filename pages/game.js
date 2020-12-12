@@ -19,6 +19,20 @@ export default function Game({ rep: { rep } }) {
   const [finished, setFinished] = React.useState(false);
   const [questions, setQuestions] = React.useState(null);
 
+  const resultPage = (obj) => {
+    console.log(obj);
+    return (
+      <div className='card-body'>
+        <h2>
+          You completed the quiz!
+        </h2>
+        <h2>
+          You scored...
+        </h2>
+      </div>
+    );
+  };
+
   React.useEffect(() => {
     if (!player.name) {
       router.push('/');

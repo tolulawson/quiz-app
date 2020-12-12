@@ -63,6 +63,30 @@ a {
   height: 100vh;
   position: relative;
 }
+.init-page .platform-check {
+  width: 100%;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+}
+.init-page .platform-check h3 {
+  font-size: 2.2rem;
+  margin: auto;
+  font-weight: 300;
+}
+.init-page .platform-check ol {
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-top: 3rem;
+  list-style-position: inside;
+}
+.init-page .platform-check ol li {
+  margin-bottom: 0.5rem;
+}
+.init-page .platform-check ol li img {
+  width: 1.6rem;
+  margin-right: 0.3rem;
+}
 .init-page .rep-setup {
   width: 100vw;
   height: 100vh;
@@ -221,14 +245,18 @@ a {
   font-weight: 300;
   margin-top: 1rem;
   font-size: 0.8rem;
-  text-align: center;
   margin-bottom: 0.9rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .init-page .init-form .input-fields .consent .consent-check {
-  margin-right: 0.6rem;
-  width: 1.2rem;
-  height: 1.2rem;
-  vertical-align: middle;
+  margin-right: 0.9rem;
+  width: 1.9rem;
+  height: 1.9rem;
 }
 .init-page .init-form .input-fields .error-message {
   color: #f44336;
@@ -320,11 +348,11 @@ a {
   width: 80%;
 }
 .game-page .react-quiz-container > div:nth-child(1) h2 {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
 }
 .game-page .react-quiz-container > div:nth-child(1) > div:nth-child(2n) {
   font-size: 2rem;
-  margin-bottom: 7rem;
+  margin-bottom: 5rem;
 }
 .game-page .react-quiz-container > div:nth-child(1) > div:nth-child(2n+1) {
   font-size: 1rem;

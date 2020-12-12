@@ -145,7 +145,7 @@ export const quiz = {
     }
     
   ],
-  "quizTitle": "Welcome to the Sanofi Product Quiz",
+  "quizTitle": "Sanofi Antibiotics Quiz",
   "quizSynopsis": "Tap the button below to get started",
   "appLocale": {
     "landingHeaderText": "<questionLength> Questions",

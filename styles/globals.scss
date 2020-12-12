@@ -55,6 +55,35 @@ a {
   height: 100vh;
   position: relative;
 
+  .platform-check {
+    width: 100%;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+
+    h3 {
+      font-size: 2.2rem;
+      margin: auto;
+      font-weight: 300;
+    }
+
+    ol {
+      font-size: 1.3rem;
+      font-weight: 300;
+      margin-top: 3rem;
+      list-style-position: inside;
+
+      li {
+        margin-bottom: 0.5rem;
+
+        img {
+          width: 1.6rem;
+          margin-right: 0.3rem;
+        }
+      }
+    }
+  }
+
   .rep-setup {
     width: 100vw;
     height: 100vh;
@@ -172,14 +201,14 @@ a {
         font-weight: 300;
         margin-top: 1rem;
         font-size: 0.8rem;
-        text-align: center;
         margin-bottom: 0.9rem;
+        display: flex;
+        align-items: center;
 
         .consent-check {
-          margin-right: 0.6rem;
-          width: 1.2rem;
-          height: 1.2rem;
-          vertical-align: middle;
+          margin-right: 0.9rem;
+          width: 1.9rem;
+          height: 1.9rem;
         }
       }
 
@@ -271,13 +300,13 @@ a {
 
     & > div:nth-child(1) {
       h2 {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
       }
 
       & > div {
         &:nth-child(2n) {
           font-size: 2rem;
-          margin-bottom: 7rem;
+          margin-bottom: 5rem;
         }
 
         &:nth-child(2n + 1) {
