@@ -7,9 +7,7 @@ import { useRouter } from 'next/router';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import PlayerContext from '../js/playerContext';
-import { generateUUID } from '../js/utils';
-import { isIpadOS } from './isIpadOS';
-import { isInstalled } from './isInstalled';
+import { generateUUID, isIpadOS, isInstalled } from '../js/utils';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
