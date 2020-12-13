@@ -94,6 +94,11 @@ const readFromFirebase = ({ collection, document }) => new Promise((resolve, rej
 
 export default function Home({ rep: { rep, setRep } }) {
   const { setPlayer } = React.useContext(PlayerContext);
+
+  if (typeof window !== 'undefined') {
+    console.log(window.navigator);
+  }
+
   React.useEffect(() => {
     setPlayer((player) => ({ ...player, id: '' }));
   }, []);
