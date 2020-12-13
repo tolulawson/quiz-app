@@ -6,8 +6,13 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import {
+  isIOS,
+  isSafari,
+  isTablet,
+} from 'react-device-detect';
 import PlayerContext from '../js/playerContext';
-import { generateUUID, isIpadOS, isInstalled } from '../js/utils';
+import { generateUUID, isInstalled } from '../js/utils';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -125,7 +130,7 @@ export default function Home({ rep: { rep, setRep } }) {
   return (
     <motion.div className='init-page'>
       {
-        !isIpadOS()
+        !isIOS
           ? (
             <div className='platform-check'>
               <h3>
@@ -141,102 +146,112 @@ export default function Home({ rep: { rep, setRep } }) {
               </h3>
             </div>
           )
-          : !isInstalled()
+          : isIOS && isTablet && !isSafari
             ? (
               <div className='platform-check'>
-                <h3>You need to install this application to proceed</h3>
-
-                <ol>
-                  <li>
-                    Tap the
-                    {' '}
-                    <strong>Share</strong>
-                    {' '}
-                    <img src='/img/share.svg' alt='share icon' />
-                    {' '}
-                    button at the top of the browser
-                  </li>
-                  <li>
-                    Select
-                    {' '}
-                    <strong>Add to Home Screen</strong>
-                    {' '}
-                    button
-                  </li>
-                </ol>
+                <h3>
+                  The application is not compatible with this browser. Open with
+                  {' '}
+                  <strong>Safari browser</strong>
+                  {' '}
+                  to begin
+                </h3>
               </div>
             )
-            : (
-              <>
-                <motion.form className='init-form' onSubmit={handleSubmit(onSubmit)}>
-                  <motion.img src='img/quiz_logo.svg' alt='quiz logo' className='quiz-logo' />
-                  <motion.div className='input-fields'>
-                    <motion.input
-                      type='text'
-                      placeholder='Enter your full name'
-                      autoCapitalize='words'
-                      name='name'
-                      ref={register({ required: true })}
-                      autoComplete='off'
-                      className='text'
-                    />
-                    {
-                      errors.name && <span className='error-message'>This field is required</span>
-                    }
-                    <motion.input
-                      type='text'
-                      placeholder='Pharmacy'
-                      autoCapitalize='words'
-                      name='pharmacy'
-                      ref={register({ required: true })}
-                      autoComplete='off'
-                      className='text'
-                    />
-                    {
-                      errors.pharmacy && <span className='error-message'>This field is required</span>
-                    }
-                    <motion.input
-                      type='email'
-                      name='email'
-                      ref={register({ required: true })}
-                      placeholder='Email'
-                      autoComplete='off'
-                      className='text'
-                    />
-                    {
-                      errors.email && <span className='error-message'>This field is required</span>
-                    }
-                    <motion.label className='consent'>
-                      <motion.input
-                        type='checkbox'
-                        name='consent'
-                        ref={register({ required: true })}
-                        className='consent-check'
-                      />
-                      I consent to the collection/use of the provided details for informational purposes
-                    </motion.label>
-                    {
-                      errors.consent && <span className='error-message'>Check the box above to proceed</span>
-                    }
-                  </motion.div>
-                  <motion.button type='submit' className='submit-button'>
-                    Start
+            : !isInstalled()
+              ? (
+                <div className='platform-check'>
+                  <h3>You need to install this application to proceed</h3>
 
-                  </motion.button>
-                </motion.form>
-                {
-                  !rep && (
-                    <motion.form className='rep-setup' onSubmit={handleRepInputSubmit}>
-                      <motion.h3>Enter your Sanofi email to begin</motion.h3>
-                      <motion.input type='email' onChange={handleRepInputChange} value={repInput} className='rep-input' placeholder='Email address' />
-                      <motion.input type='submit' value='Submit' className='action-btn rep-submit' />
-                    </motion.form>
-                  )
-                }
-                <motion.img src='/img/table.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/records')} />
-                <motion.img src='/img/leaderboard.svg' alt='home button' className='menu-button' onClick={() => router.push('/leaderboard')} />
-              </>
-            )
+                  <ol>
+                    <li>
+                      Tap the
+                      {' '}
+                      <strong>Share</strong>
+                      {' '}
+                      <img src='/img/share.svg' alt='share icon' />
+                      {' '}
+                      button at the top right of the browser
+                    </li>
+                    <li>
+                      Select
+                      {' '}
+                      <strong>Add to Home Screen</strong>
+                    </li>
+                  </ol>
+                </div>
+              )
+              : (
+                <>
+                  <motion.form className='init-form' onSubmit={handleSubmit(onSubmit)}>
+                    <motion.img src='img/quiz_logo.svg' alt='quiz logo' className='quiz-logo' />
+                    <motion.div className='input-fields'>
+                      <motion.input
+                        type='text'
+                        placeholder='Enter your full name'
+                        autoCapitalize='words'
+                        name='name'
+                        ref={register({ required: true })}
+                        autoComplete='off'
+                        className='text'
+                      />
+                      {
+                        errors.name && <span className='error-message'>This field is required</span>
+                      }
+                      <motion.input
+                        type='text'
+                        placeholder='Pharmacy'
+                        autoCapitalize='words'
+                        name='pharmacy'
+                        ref={register({ required: true })}
+                        autoComplete='off'
+                        className='text'
+                      />
+                      {
+                        errors.pharmacy && <span className='error-message'>This field is required</span>
+                      }
+                      <motion.input
+                        type='email'
+                        name='email'
+                        ref={register({ required: true })}
+                        placeholder='Email'
+                        autoComplete='off'
+                        className='text'
+                      />
+                      {
+                        errors.email && <span className='error-message'>This field is required</span>
+                      }
+                      <motion.label className='consent'>
+                        <motion.input
+                          type='checkbox'
+                          name='consent'
+                          ref={register({ required: true })}
+                          className='consent-check'
+                        />
+                        I consent to the collection/use of the provided details for informational purposes
+                      </motion.label>
+                      {
+                        errors.consent && <span className='error-message'>Check the box above to proceed</span>
+                      }
+                    </motion.div>
+                    <motion.button type='submit' className='submit-button'>
+                      Start
+
+                    </motion.button>
+                  </motion.form>
+                  {
+                    !rep && (
+                      <motion.form className='rep-setup' onSubmit={handleRepInputSubmit}>
+                        <motion.h3>Enter your Sanofi email to begin</motion.h3>
+                        <motion.input type='email' onChange={handleRepInputChange} value={repInput} className='rep-input' placeholder='Email address' />
+                        <motion.input type='submit' value='Submit' className='action-btn rep-submit' />
+                      </motion.form>
+                    )
+                  }
+                  <motion.img src='/img/table.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/records')} />
+                  <motion.img src='/img/leaderboard.svg' alt='home button' className='menu-button' onClick={() => router.push('/leaderboard')} />
+                </>
+              )
       }
       <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
     </motion.div>
