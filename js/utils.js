@@ -28,7 +28,7 @@ const generateUUID = () => {
 
 const isInstalled = () => {
   if (process.env.browser) {
-    return window.matchMedia('(display-mode: standalone)').matches;
+    return ('standalone' in window.navigator) && (window.navigator.standalone);
   }
 };
 

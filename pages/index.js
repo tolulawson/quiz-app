@@ -158,7 +158,7 @@ export default function Home({ rep: { rep, setRep } }) {
                 </h3>
               </div>
             )
-            : !isInstalled()
+            : isIOS && isTablet && isSafari && !isInstalled()
               ? (
                 <div className='platform-check'>
                   <h3>You need to install this application to proceed</h3>
