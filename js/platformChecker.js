@@ -8,11 +8,15 @@ import { isInstalled } from './utils';
 
 export default function PlatformChecker({ children }) {
   return (
-    !isIOS
+    !isIOS || !isTablet
       ? (
         <div className='platform-check'>
           <h3>
-            The application is not compatible with this platform. Open with
+            The application is not compatible with this device.
+            {' '}
+            <br />
+            {' '}
+            Open with
             {' '}
             <strong>Safari browser</strong>
             {' '}
