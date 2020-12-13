@@ -4,7 +4,7 @@ import {
   isSafari,
   isTablet,
 } from 'react-device-detect';
-import isInstalled from './utils';
+import { isInstalled } from './utils';
 
 export default function PlatformChecker({ children }) {
   return (
@@ -22,6 +22,7 @@ export default function PlatformChecker({ children }) {
             {' '}
             to begin
           </h3>
+          <img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='logo' />
         </div>
       )
       : isIOS && isTablet && !isSafari
@@ -34,6 +35,7 @@ export default function PlatformChecker({ children }) {
               {' '}
               to begin
             </h3>
+            <img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
           </div>
         )
         : !isInstalled()
@@ -57,6 +59,7 @@ export default function PlatformChecker({ children }) {
                   <strong>Add to Home Screen</strong>
                 </li>
               </ol>
+              <img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
             </div>
           )
           : { children }

@@ -3,9 +3,10 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { readFromFirebase } from './index';
 import PlayerContext from '../js/playerContext';
+import PlatformChecker from '../js/platformChecker';
 
 export default function Leaderboard() {
-  const [leaderboardData, setLeaderboardData] = React.useState(null);
+  const [, setLeaderboardData] = React.useState(null);
   const { player } = React.useContext(PlayerContext);
   const router = useRouter();
   const [loading, setLoading] = React.useState(true);
@@ -32,31 +33,33 @@ export default function Leaderboard() {
   }, []);
   return (
     <motion.div className='records-page'>
-      <motion.div className='header'>
-        <motion.img src='/img/table.svg' />
-        <motion.h1>Quiz Records</motion.h1>
-      </motion.div>
-      {
-        loading
-          && <motion.img src='/img/loaders.svg' className='spinner' />
-      }
-      <motion.iframe
-        className='airtable-embed'
-        src='https://airtable.com/embed/shrlV13DeesqfBSYt?backgroundColor=purple&viewControls=on'
-        frameBorder='0'
-        onLoad={() => setLoading(false)}
-        width='90%'
-        height='72%'
-        style={{
-          background: 'transparent',
-          border: 'none',
-          opacity: `${loading ? 0 : 1}`,
-          transition: 'opacity 0.5s ease',
-        }}
-      />
-      <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
-      <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
-      <motion.img src='/img/leaderboard.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/leaderboard')} />
+      <PlatformChecker>
+        <motion.div className='header'>
+          <motion.img src='/img/table.svg' />
+          <motion.h1>Quiz Records</motion.h1>
+        </motion.div>
+        {
+          loading
+            && <motion.img src='/img/loaders.svg' className='spinner' />
+        }
+        <motion.iframe
+          className='airtable-embed'
+          src='https://airtable.com/embed/shrlV13DeesqfBSYt?backgroundColor=purple&viewControls=on'
+          frameBorder='0'
+          onLoad={() => setLoading(false)}
+          width='90%'
+          height='72%'
+          style={{
+            background: 'transparent',
+            border: 'none',
+            opacity: `${loading ? 0 : 1}`,
+            transition: 'opacity 0.5s ease',
+          }}
+        />
+        <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
+        <motion.img src='/img/leaderboard.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/leaderboard')} />
+        <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
+      </PlatformChecker>
     </motion.div>
   );
 }

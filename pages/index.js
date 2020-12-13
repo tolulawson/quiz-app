@@ -13,6 +13,7 @@ import {
 } from 'react-device-detect';
 import PlayerContext from '../js/playerContext';
 import { generateUUID, isInstalled } from '../js/utils';
+import PlatformChecker from '../js/platformChecker';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -130,7 +131,8 @@ export default function Home({ rep: { rep, setRep } }) {
 
   return (
     <motion.div className='init-page'>
-      {
+      <PlatformChecker>
+        {
         !isIOS
           ? (
             <div className='platform-check'>
@@ -254,7 +256,8 @@ export default function Home({ rep: { rep, setRep } }) {
                 </>
               )
       }
-      <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
+        <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
+      </PlatformChecker>
     </motion.div>
   );
 }

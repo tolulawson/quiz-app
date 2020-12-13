@@ -45,6 +45,49 @@ a {
   width: min(4.5vw, 2.2rem);
 }
 
+.platform-check {
+  width: 100%;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  padding-top: 15vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.platform-check .logo {
+  position: fixed;
+  bottom: 5vh;
+  width: 19vh;
+  min-width: 9rem;
+}
+.platform-check h3 {
+  font-size: 2.2rem;
+  font-weight: 300;
+}
+.platform-check ol {
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-top: 2rem;
+  list-style-position: inside;
+  padding: 0;
+}
+.platform-check ol li {
+  margin-bottom: 0.5rem;
+}
+.platform-check ol li img {
+  width: 1.6rem;
+  margin-right: 0.3rem;
+}
+
 .init-page {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -62,30 +105,6 @@ a {
   width: 100vw;
   height: 100vh;
   position: relative;
-}
-.init-page .platform-check {
-  width: 100%;
-  max-width: 600px;
-  width: 90%;
-  text-align: center;
-}
-.init-page .platform-check h3 {
-  font-size: 2.2rem;
-  margin: auto;
-  font-weight: 300;
-}
-.init-page .platform-check ol {
-  font-size: 1.3rem;
-  font-weight: 300;
-  margin-top: 3rem;
-  list-style-position: inside;
-}
-.init-page .platform-check ol li {
-  margin-bottom: 0.5rem;
-}
-.init-page .platform-check ol li img {
-  width: 1.6rem;
-  margin-right: 0.3rem;
 }
 .init-page .rep-setup {
   width: 100vw;

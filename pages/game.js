@@ -6,6 +6,7 @@ import { quiz } from '../js/questions';
 import { formatTime } from '../js/utils';
 import PlayerContext from '../js/playerContext';
 import { addToFirebase, firebase } from './index';
+import PlatformChecker from '../js/platformChecker';
 
 export default function Game({ rep: { rep } }) {
   const questionIndexes = [];
@@ -84,7 +85,8 @@ export default function Game({ rep: { rep } }) {
 
   return (
     <motion.div className='game-page'>
-      {
+      <PlatformChecker>
+        {
         player.name && (
           <>
             <motion.div className='hud'>
@@ -125,7 +127,8 @@ export default function Game({ rep: { rep } }) {
           </>
         )
       }
-      <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
+        <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
+      </PlatformChecker>
     </motion.div>
   );
 }
