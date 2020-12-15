@@ -34,35 +34,34 @@ export default function Leaderboard() {
   }, []);
   return (
     <motion.div className='leaderboard-page'>
-      <PlatformChecker>
-        <motion.div className='header'>
-          <motion.img src='/img/leaderboard.svg' />
-          <motion.h1>Leaderboard</motion.h1>
-        </motion.div>
-        {
-          !leaderboardData
-            ? <motion.img src='/img/loaders.svg' className='spinner' />
-            : !leaderboardData.length
-              ? <motion.p className='no-records'>No records found</motion.p>
-              : (
-                <motion.div className='leaderboard-table'>
-                  {
-                    leaderboardData.map((record) => (
-                      <motion.div className={player.id && record.id === player.id ? 'leaderboard-row new' : 'leaderboard-row'} key={record.id}>
-                        <motion.span className='serial'>{`${record.rank}.`}</motion.span>
-                        <motion.span className='name'>{record.name}</motion.span>
-                        <motion.span className='points'>{`${record.result.correctPoints}%`}</motion.span>
-                        <motion.span className='time'>{`${record.time}s`}</motion.span>
-                      </motion.div>
-                    ))
-                  }
-                </motion.div>
-              )
-        }
-        <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
-        <motion.img src='/img/table.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/records')} />
-        <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo settings' />
-      </PlatformChecker>
+      <PlatformChecker />
+      <motion.div className='header'>
+        <motion.img src='/img/leaderboard.svg' />
+        <motion.h1>Leaderboard</motion.h1>
+      </motion.div>
+      {
+        !leaderboardData
+          ? <motion.img src='/img/loaders.svg' className='spinner' />
+          : !leaderboardData.length
+            ? <motion.p className='no-records'>No records found</motion.p>
+            : (
+              <motion.div className='leaderboard-table'>
+                {
+                  leaderboardData.map((record) => (
+                    <motion.div className={player.id && record.id === player.id ? 'leaderboard-row new' : 'leaderboard-row'} key={record.id}>
+                      <motion.span className='serial'>{`${record.rank}.`}</motion.span>
+                      <motion.span className='name'>{record.name}</motion.span>
+                      <motion.span className='points'>{`${record.result.correctPoints}%`}</motion.span>
+                      <motion.span className='time'>{`${record.time}s`}</motion.span>
+                    </motion.div>
+                  ))
+                }
+              </motion.div>
+            )
+      }
+      <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
+      <motion.img src='/img/table.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/records')} />
+      <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo settings' />
     </motion.div>
   );
 }

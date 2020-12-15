@@ -45,10 +45,16 @@ a {
   width: min(4.5vw, 2.2rem);
 }
 
-.platform-check {
+.platform-check-container {
+  position: absolute;
   width: 100%;
-  max-width: 600px;
+  height: 100%;
+  z-index: 2;
+  background: #2E1D5F;
+}
+.platform-check-container .platform-check {
   width: 90%;
+  max-width: 600px;
   text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -56,34 +62,33 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100%;
   padding-top: 15vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin: auto;
 }
-.platform-check .logo {
+.platform-check-container .platform-check .logo {
   position: fixed;
   bottom: 5vh;
-  width: 19vh;
-  min-width: 9rem;
+  width: 12rem;
 }
-.platform-check h3 {
+.platform-check-container .platform-check h3 {
   font-size: 2.2rem;
   font-weight: 300;
 }
-.platform-check ol {
+.platform-check-container .platform-check ol {
   font-size: 1.3rem;
   font-weight: 300;
   margin-top: 2rem;
   list-style-position: inside;
   padding: 0;
 }
-.platform-check ol li {
+.platform-check-container .platform-check ol li {
   margin-bottom: 0.5rem;
 }
-.platform-check ol li img {
+.platform-check-container .platform-check ol li img {
   width: 1.6rem;
   margin-right: 0.3rem;
 }

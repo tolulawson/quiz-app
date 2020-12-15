@@ -46,42 +46,48 @@ a {
   }
 }
 
-.platform-check {
+.platform-check-container {
+  position: absolute;
   width: 100%;
-  max-width: 600px;
-  width: 90%;
-  text-align: center;
-  display: flex;
-  align-items: center;
   height: 100%;
-  padding-top: 15vh;
-  flex-direction: column;
+  z-index: 2;
+  background: #2E1D5F;
 
-  .logo {
-    position: fixed;
-    bottom: 5vh;
-    width: 19vh;
-    min-width: 9rem;
-  }
+  .platform-check {
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding-top: 15vh;
+    flex-direction: column;
+    margin: auto;
 
-  h3 {
-    font-size: 2.2rem;
-    font-weight: 300;
-  }
+    .logo {
+      position: fixed;
+      bottom: 5vh;
+      width: 12rem;
+    }
 
-  ol {
-    font-size: 1.3rem;
-    font-weight: 300;
-    margin-top: 2rem;
-    list-style-position: inside;
-    padding: 0;
+    h3 {
+      font-size: 2.2rem;
+      font-weight: 300;
+    }
 
-    li {
-      margin-bottom: 0.5rem;
+    ol {
+      font-size: 1.3rem;
+      font-weight: 300;
+      margin-top: 2rem;
+      list-style-position: inside;
+      padding: 0;
 
-      img {
-        width: 1.6rem;
-        margin-right: 0.3rem;
+      li {
+        margin-bottom: 0.5rem;
+
+        img {
+          width: 1.6rem;
+          margin-right: 0.3rem;
+        }
       }
     }
   }
@@ -660,7 +666,7 @@ a {
 
 }
 
-.action-btn, {
+.action-btn {
   background: #5A37BC;
   border-radius: 28px;
   line-height: 3.5rem;

@@ -6,13 +6,8 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import {
-  isIOS,
-  isSafari,
-  isTablet,
-} from 'react-device-detect';
 import PlayerContext from '../js/playerContext';
-import { generateUUID, isInstalled } from '../js/utils';
+import { generateUUID } from '../js/utils';
 import PlatformChecker from '../js/platformChecker';
 
 const firebaseConfig = {
@@ -131,6 +126,7 @@ export default function Home({ rep: { rep, setRep } }) {
 
   return (
     <motion.div className='init-page'>
+      <PlatformChecker />
       <motion.form className='init-form' onSubmit={handleSubmit(onSubmit)}>
         <motion.img src='img/quiz_logo.svg' alt='quiz logo' className='quiz-logo' />
         <motion.div className='input-fields'>
