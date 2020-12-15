@@ -131,76 +131,75 @@ export default function Home({ rep: { rep, setRep } }) {
 
   return (
     <motion.div className='init-page'>
-      <PlatformChecker>
-        <motion.form className='init-form' onSubmit={handleSubmit(onSubmit)}>
-          <motion.img src='img/quiz_logo.svg' alt='quiz logo' className='quiz-logo' />
-          <motion.div className='input-fields'>
+      <motion.form className='init-form' onSubmit={handleSubmit(onSubmit)}>
+        <motion.img src='img/quiz_logo.svg' alt='quiz logo' className='quiz-logo' />
+        <motion.div className='input-fields'>
+          <motion.input
+            type='text'
+            placeholder='Enter your full name'
+            autoCapitalize='words'
+            name='name'
+            ref={register({ required: true })}
+            autoComplete='off'
+            className='text'
+          />
+          {
+            errors.name && <span className='error-message'>This field is required</span>
+          }
+          <motion.input
+            type='text'
+            placeholder='Pharmacy'
+            autoCapitalize='words'
+            name='pharmacy'
+            ref={register({ required: true })}
+            autoComplete='off'
+            className='text'
+          />
+          {
+            errors.pharmacy && <span className='error-message'>This field is required</span>
+          }
+          <motion.input
+            type='email'
+            name='email'
+            ref={register({ required: true })}
+            placeholder='Email'
+            autoComplete='off'
+            className='text'
+          />
+          {
+            errors.email && <span className='error-message'>This field is required</span>
+          }
+          <motion.label className='consent'>
             <motion.input
-              type='text'
-              placeholder='Enter your full name'
-              autoCapitalize='words'
-              name='name'
+              type='checkbox'
+              name='consent'
               ref={register({ required: true })}
-              autoComplete='off'
-              className='text'
+              className='consent-check'
             />
-            {
-              errors.name && <span className='error-message'>This field is required</span>
-            }
-            <motion.input
-              type='text'
-              placeholder='Pharmacy'
-              autoCapitalize='words'
-              name='pharmacy'
-              ref={register({ required: true })}
-              autoComplete='off'
-              className='text'
-            />
-            {
-              errors.pharmacy && <span className='error-message'>This field is required</span>
-            }
-            <motion.input
-              type='email'
-              name='email'
-              ref={register({ required: true })}
-              placeholder='Email'
-              autoComplete='off'
-              className='text'
-            />
-            {
-              errors.email && <span className='error-message'>This field is required</span>
-            }
-            <motion.label className='consent'>
-              <motion.input
-                type='checkbox'
-                name='consent'
-                ref={register({ required: true })}
-                className='consent-check'
-              />
-              I consent to the collection/use of the provided details for informational purposes
-            </motion.label>
-            {
-              errors.consent && <span className='error-message'>Check the box above to proceed</span>
-            }
-          </motion.div>
-          <motion.button type='submit' className='submit-button'>
-            Start
+            I consent to the collection/use of the provided details for informational purposes
+          </motion.label>
+          {
+            errors.consent && <span className='error-message'>Check the box above to proceed</span>
+          }
+        </motion.div>
+        <motion.button type='submit' className='submit-button'>
+          Start
 
-          </motion.button>
-        </motion.form>
-        {
-          !rep && (
-            <motion.form className='rep-setup' onSubmit={handleRepInputSubmit}>
-              <motion.h3>Enter your Sanofi email to begin</motion.h3>
-              <motion.input type='email' onChange={handleRepInputChange} value={repInput} className='rep-input' placeholder='Email address' />
-              <motion.input type='submit' value='Submit' className='action-btn rep-submit' />
-            </motion.form>
-          )
-        }
-        <motion.img src='/img/table.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/records')} />
-        <motion.img src='/img/leaderboard.svg' alt='home button' className='menu-button' onClick={() => router.push('/leaderboard')} />
-        <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
-      </PlatformChecker>
+        </motion.button>
+      </motion.form>
+      {
+        !rep && (
+          <motion.form className='rep-setup' onSubmit={handleRepInputSubmit}>
+            <motion.h3>Enter your Sanofi email to begin</motion.h3>
+            <motion.input type='email' onChange={handleRepInputChange} value={repInput} className='rep-input' placeholder='Email address' />
+            <motion.input type='submit' value='Submit' className='action-btn rep-submit' />
+          </motion.form>
+        )
+      }
+      <motion.img src='/img/table.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/records')} />
+      <motion.img src='/img/leaderboard.svg' alt='home button' className='menu-button' onClick={() => router.push('/leaderboard')} />
+      <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
+
     </motion.div>
   );
 }
