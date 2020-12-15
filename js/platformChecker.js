@@ -37,7 +37,7 @@ export default function PlatformChecker({ children }) {
               {' '}
               <strong>Safari browser</strong>
               {' '}
-              to begin
+              to begin.
             </h3>
             <img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
           </div>
