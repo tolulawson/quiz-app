@@ -12,7 +12,7 @@ export default function Leaderboard() {
   const router = useRouter();
 
   React.useEffect(() => {
-    readFromFirebase({ collection: 'quiz' })
+    readFromFirebase({ collection: 'quiz-sample' })
       .then((data) => {
         const sortedData = data.sort((a, b) => {
           const divB = 10 ** String(b.time).length;

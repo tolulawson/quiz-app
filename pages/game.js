@@ -54,7 +54,7 @@ export default function Game({ rep: { rep } }) {
     setFinished(true);
     clearInterval(timerRef.current);
     addToFirebase({
-      collection: 'quiz',
+      collection: 'quiz-sample',
       data: {
         id: player.id,
         name: player.name,
