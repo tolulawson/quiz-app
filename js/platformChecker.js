@@ -8,7 +8,7 @@ import { isInstalled } from './utils';
 
 export default function PlatformChecker() {
   return (
-    !isIOS || !isTablet
+    false && (!isIOS || !isTablet)
       ? (
         <div className='platform-check-container'>
           <div className='platform-check'>
@@ -31,7 +31,7 @@ export default function PlatformChecker() {
           </div>
         </div>
       )
-      : isIOS && isTablet && !isSafari
+      : false && (isIOS && isTablet && !isSafari)
         ? (
           <div className='platform-check-container'>
             <div className='platform-check'>
@@ -46,7 +46,7 @@ export default function PlatformChecker() {
             </div>
           </div>
         )
-        : !isInstalled()
+        : false && !isInstalled()
           ? (
             <div className='platform-check-container'>
               <div className='platform-check'>

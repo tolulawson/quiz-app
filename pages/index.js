@@ -93,6 +93,7 @@ export default function Home({ rep: { rep, setRep } }) {
 
   React.useEffect(() => {
     setPlayer((player) => ({ ...player, id: '' }));
+    setRep('Default User');
   }, []);
   const {
     register,
