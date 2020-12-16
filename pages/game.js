@@ -72,45 +72,47 @@ export default function Game({ rep: { rep } }) {
   return (
     <motion.div className='game-page'>
       <PlatformChecker />
-      player.name && (
-      <>
-        <motion.div className='hud'>
-          <motion.div className='name-group hud-item'>
-            <motion.img src='/img/person.svg' />
-            {player && player.name}
-          </motion.div>
-          <motion.div className='time-group hud-item'>
-            <motion.img src='/img/alarm.svg' className='alarm' />
-            {formatTime(timeTaken)}
-          </motion.div>
-        </motion.div>
-        {
-          questions && (
-          <Quiz
-            quiz={questions}
-            shuffle
-            onStart={handleQuizStart}
-            onComplete={handleQuizEnd}
-          />
-          )
-        }
-        {
-          finished && (
-            <motion.div className='game-end-buttons'>
-              <motion.button className='action-btn refresh' onClick={() => router.push('/leaderboard')}>
-                <motion.img src='/img/leaderboard.svg' />
-                Leaderboard
-              </motion.button>
-              <motion.button className='action-btn refresh' onClick={() => router.push('/')}>
-                <motion.img src='/img/home.svg' />
-                Home
-              </motion.button>
+      {
+        player.name && (
+        <>
+          <motion.div className='hud'>
+            <motion.div className='name-group hud-item'>
+              <motion.img src='/img/person.svg' />
+              {player && player.name}
             </motion.div>
-          )
-        }
-        <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
-      </>
-      )
+            <motion.div className='time-group hud-item'>
+              <motion.img src='/img/alarm.svg' className='alarm' />
+              {formatTime(timeTaken)}
+            </motion.div>
+          </motion.div>
+          {
+            questions && (
+            <Quiz
+              quiz={questions}
+              shuffle
+              onStart={handleQuizStart}
+              onComplete={handleQuizEnd}
+            />
+            )
+          }
+          {
+            finished && (
+              <motion.div className='game-end-buttons'>
+                <motion.button className='action-btn refresh' onClick={() => router.push('/leaderboard')}>
+                  <motion.img src='/img/leaderboard.svg' />
+                  Leaderboard
+                </motion.button>
+                <motion.button className='action-btn refresh' onClick={() => router.push('/')}>
+                  <motion.img src='/img/home.svg' />
+                  Home
+                </motion.button>
+              </motion.div>
+            )
+          }
+          <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
+        </>
+        )
+      }
       <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
     </motion.div>
   );
