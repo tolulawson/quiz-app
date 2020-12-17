@@ -15,10 +15,9 @@ export default function Leaderboard() {
     readFromFirebase({ collection: 'quiz' })
       .then((data) => {
         const sortedData = data.sort((a, b) => {
-          const divB = 10 ** String(b.time).length;
-          const divA = 10 ** String(a.time).length;
+          const div = 10 ** Math.max(String(b.time).length, String(a.time).length);
           return (
-            b.result.correctPoints - (b.time / divB)) - (a.result.correctPoints - (a.time / divA)
+            b.result.correctPoints - (b.time / div)) - (a.result.correctPoints - (a.time / div)
           );
         })
           .map((record, index) => ({ ...record, rank: index + 1 }));
