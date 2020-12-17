@@ -28,7 +28,7 @@ const generateUUID = () => {
 
 const isInstalled = () => {
   if (typeof window !== 'undefined') {
-    return !('standalone' in window.navigator) && !(window.navigator.standalone);
+    return ('standalone' in window.navigator) && (window.navigator.standalone);
   }
 };
 
