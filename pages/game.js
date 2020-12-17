@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Quiz from 'react-quiz-component-remix';
@@ -7,6 +8,29 @@ import { formatTime } from '../js/utils';
 import PlayerContext from '../js/playerContext';
 import { addToFirebase, firebase } from './index';
 import PlatformChecker from '../js/platformChecker';
+
+const renderCustomResultPage = (obj) => {
+  const resultChildren = (score) => (
+    <>
+      <span className='emoji'>
+        {
+          score <= 50 ? <img src='img/happy.gif' alt='happy emoji' /> : <img src='img/sad.gif' alt='sad emoji' />
+        }
+      </span>
+      <span className='result-text'>
+        {
+          score >= 50 ? `Congratulations! You scored ${score}%` : `You scored ${score}%`
+        }
+      </span>
+    </>
+  );
+  ReactDOM.render(
+    React.createElement('div', {
+      className: 'result',
+    }, resultChildren(obj.correctPoints)),
+    document.querySelector('.questionWrapper'),
+  );
+};
 
 export default function Game({ rep: { rep } }) {
   const questionIndexes = [];
@@ -34,6 +58,7 @@ export default function Game({ rep: { rep } }) {
     }
     questionIndexes.forEach((index) => selectedQuestions.push(quiz.questions[index]));
     quiz.questions = selectedQuestions;
+    // quiz.questions.length = 1;
     setQuestions(quiz);
   }, []);
 
@@ -72,45 +97,49 @@ export default function Game({ rep: { rep } }) {
   return (
     <motion.div className='game-page'>
       <PlatformChecker />
-      player.name && (
-      <>
-        <motion.div className='hud'>
-          <motion.div className='name-group hud-item'>
-            <motion.img src='/img/person.svg' />
-            {player && player.name}
-          </motion.div>
-          <motion.div className='time-group hud-item'>
-            <motion.img src='/img/alarm.svg' className='alarm' />
-            {formatTime(timeTaken)}
-          </motion.div>
-        </motion.div>
-        {
-          questions && (
-          <Quiz
-            quiz={questions}
-            shuffle
-            onStart={handleQuizStart}
-            onComplete={handleQuizEnd}
-          />
-          )
-        }
-        {
-          finished && (
-            <motion.div className='game-end-buttons'>
-              <motion.button className='action-btn refresh' onClick={() => router.push('/leaderboard')}>
-                <motion.img src='/img/leaderboard.svg' />
-                Leaderboard
-              </motion.button>
-              <motion.button className='action-btn refresh' onClick={() => router.push('/')}>
-                <motion.img src='/img/home.svg' />
-                Home
-              </motion.button>
+      {
+        player.name && (
+        <>
+          <motion.div className='hud'>
+            <motion.div className='name-group hud-item'>
+              <motion.img src='/img/person.svg' />
+              {player && player.name}
             </motion.div>
-          )
-        }
-        <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
-      </>
-      )
+            <motion.div className='time-group hud-item'>
+              <motion.img src='/img/alarm.svg' className='alarm' />
+              {formatTime(timeTaken)}
+            </motion.div>
+          </motion.div>
+          {
+            questions && (
+            <Quiz
+              quiz={questions}
+              shuffle
+              onStart={handleQuizStart}
+              onComplete={handleQuizEnd}
+              showDefaultResult={false}
+              customResultPage={renderCustomResultPage}
+            />
+            )
+          }
+          {
+            finished && (
+              <motion.div className='game-end-buttons'>
+                <motion.button className='action-btn refresh' onClick={() => router.push('/leaderboard')}>
+                  <motion.img src='/img/leaderboard.svg' />
+                  Leaderboard
+                </motion.button>
+                <motion.button className='action-btn refresh' onClick={() => router.push('/')}>
+                  <motion.img src='/img/home.svg' />
+                  Home
+                </motion.button>
+              </motion.div>
+            )
+          }
+          <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
+        </>
+        )
+      }
       <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
     </motion.div>
   );

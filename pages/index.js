@@ -30,6 +30,13 @@ if (!firebase.apps.length) {
     cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED,
   });
   if (process.browser) {
+    // redirect firestore requests to emulator
+    if (window.location.hostname === 'localhost' || window.location.hostname === '192.168.100.60') {
+      db.settings({
+        host: 'localhost:8080',
+        ssl: false,
+      });
+    }
     db.enablePersistence()
       .then(() => {
         console.log('Persistence enabled');
@@ -192,7 +199,7 @@ export default function Home({ rep: { rep, setRep } }) {
           </motion.form>
         )
       }
-      <motion.img src='/img/table.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/records')} />
+      {/* <motion.img src='/img/table.svg' alt='home button' className='menu-button settings' onClick={() => router.push('/records')} /> */}
       <motion.img src='/img/leaderboard.svg' alt='home button' className='menu-button' onClick={() => router.push('/leaderboard')} />
       <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
 

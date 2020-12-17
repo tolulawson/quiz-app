@@ -394,6 +394,24 @@ a {
 
     .questionWrapper {
 
+      .result {
+        font-size: 5rem;
+
+        .emoji {
+          img {
+            width: calc(6rem + 8vh);
+            filter: drop-shadow(5px 6px 4px rgba(32, 33, 36, 0.8));
+          }
+
+          margin-bottom: 1rem;
+        }
+
+        .result-text {
+          font-size: 3rem;
+          margin-bottom: 2rem;
+        }
+      }
+
       .card-body {
 
         h2 {

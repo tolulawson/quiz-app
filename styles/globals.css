@@ -411,6 +411,21 @@ a {
           justify-content: center;
   text-align: center;
 }
+.game-page .react-quiz-container .questionWrapper .result {
+  font-size: 5rem;
+}
+.game-page .react-quiz-container .questionWrapper .result .emoji {
+  margin-bottom: 1rem;
+}
+.game-page .react-quiz-container .questionWrapper .result .emoji img {
+  width: calc(6rem + 8vh);
+  -webkit-filter: drop-shadow(5px 6px 4px rgba(32, 33, 36, 0.8));
+          filter: drop-shadow(5px 6px 4px rgba(32, 33, 36, 0.8));
+}
+.game-page .react-quiz-container .questionWrapper .result .result-text {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
 .game-page .react-quiz-container .questionWrapper .card-body h2:nth-child(1) {
   font-weight: 400;
   font-size: 2rem;
