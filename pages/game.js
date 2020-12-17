@@ -57,9 +57,11 @@ export default function Game({ rep: { rep } }) {
       }
     }
     questionIndexes.forEach((index) => selectedQuestions.push(quiz.questions[index]));
-    quiz.questions = selectedQuestions;
+    // quiz.questions = selectedQuestions;
     // quiz.questions.length = 1;
-    setQuestions(quiz);
+    // eslint-disable-next-line no-debugger
+    debugger;
+    setQuestions({ ...quiz, questions: selectedQuestions });
   }, []);
 
   const timerRef = React.useRef();

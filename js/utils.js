@@ -27,6 +27,11 @@ const generateUUID = () => {
 };
 
 const isInstalled = () => {
+  if (process.browser) {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '192.168.100.60') {
+      return true;
+    }
+  }
   if (typeof window !== 'undefined') {
     return ('standalone' in window.navigator) && (window.navigator.standalone);
   }
