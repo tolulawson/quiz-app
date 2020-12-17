@@ -14,7 +14,7 @@ const renderCustomResultPage = (obj) => {
     <>
       <span className='emoji'>
         {
-          score <= 50 ? <img src='img/happy.gif' alt='happy emoji' /> : <img src='img/sad.gif' alt='sad emoji' />
+          score >= 50 ? <img src='img/happy.gif' alt='happy emoji' /> : <img src='img/sad.gif' alt='sad emoji' />
         }
       </span>
       <span className='result-text'>
