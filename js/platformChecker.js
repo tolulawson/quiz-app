@@ -46,7 +46,7 @@ export default function PlatformChecker() {
             </div>
           </div>
         )
-        : isInstalled()
+        : !isInstalled()
           ? (
             <div className='platform-check-container'>
               <div className='platform-check'>
