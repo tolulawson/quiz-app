@@ -17,11 +17,11 @@ class MyDocument extends Document {
         <meta charSet='utf-8' />
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
+        <meta name='viewport' content='viewport-fit=cover' />
         <meta name='description' content='An app for administering quizzes by Sanofi medical representatives to their stakeholders.' />
         <meta name='theme-color' content='#2E1D5F' />
         <link href='manifest.json' rel='manifest' />
         <meta content='@tolulawson' name='author' />
-        <script async src='https://unpkg.com/pwacompat' />
         <link rel='icon' href='icons/512.png' sizes='512x512' />
         <link rel='icon' href='icons/256.png' sizes='256x256' />
         <link rel='icon' href='icons/128.png' sizes='128x128' />
@@ -31,6 +31,7 @@ class MyDocument extends Document {
         <meta name='screen-orientation' content='portrait' />
         <meta name='x5-page-mode' content='app' />
         <meta name='browsermode' content='application' />
+        <script async src='https://unpkg.com/pwacompat' />
         <body>
           <Main />
           <NextScript />
