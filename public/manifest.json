@@ -1,7 +1,7 @@
 {
   "name": "Sanofi Quiz",
   "short_name": "Sanofi Quiz",
-  "description": "An app for administering quizes by Sanofi medical representatives to their stakeholders.",
+  "description": "An app for administering quizzes by Sanofi medical representatives to their stakeholders.",
   "lang": "en",
   "start_url": "/",
   "display": "fullscreen",
