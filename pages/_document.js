@@ -27,11 +27,23 @@ class MyDocument extends Document {
         <link rel='icon' href='icons/128.png' sizes='128x128' />
         <link rel='icon' href='icons/32.png' sizes='32x32' />
         <meta name='mobile-web-app-capable' content='yes' />
+        <meta name='apple-mobile-web-app-capable' content='yes' />
         <meta name='x5-orientation' content='portrait' />
         <meta name='screen-orientation' content='portrait' />
         <meta name='x5-page-mode' content='app' />
         <meta name='browsermode' content='application' />
-        {/* <script async src='https://unpkg.com/pwacompat' /> */}
+        <link rel='apple-touch-icon' href='icons/180.png' />
+
+        <link
+          rel='apple-touch-startup-image'
+          media='screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)'
+          href='icons/2048x1536.png'
+        />
+        <link
+          rel='apple-touch-startup-image'
+          media='screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)'
+          href='icons/1536x2048.png'
+        />
         <body>
           <Main />
           <NextScript />
