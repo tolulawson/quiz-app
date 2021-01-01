@@ -31,7 +31,7 @@ class MyDocument extends Document {
         <meta name='screen-orientation' content='portrait' />
         <meta name='x5-page-mode' content='app' />
         <meta name='browsermode' content='application' />
-        <script async src='https://unpkg.com/pwacompat' />
+        {/* <script async src='https://unpkg.com/pwacompat' /> */}
         <body>
           <Main />
           <NextScript />
