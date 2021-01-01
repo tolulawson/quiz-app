@@ -18,15 +18,19 @@ class MyDocument extends Document {
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
         <meta name='description' content='An app for administering quizzes by Sanofi medical representatives to their stakeholders.' />
-        <meta name='keywords' content='Keywords' />
-        <meta name='apple-mobile-web-app-title' content='Sanofi Quiz' />
-        <meta name='apple-mobile-web-app-capable' content='yes' />
-        <meta name='apple-mobile-web-app-status-bar-style' content='default' />
         <meta name='theme-color' content='#2E1D5F' />
-        <link href='/manifest.json' rel='manifest' />
+        <link href='manifest.json' rel='manifest' />
+        <meta content='@tolulawson' name='author' />
         <script async src='https://unpkg.com/pwacompat' />
-        <link rel='icon' href='/favicon.ico' />
-        <link rel='icon' type='image/png' href='icons/144.png' sizes='144x144' />
+        <link rel='icon' href='icons/512.png' sizes='512x512' />
+        <link rel='icon' href='icons/256.png' sizes='256x256' />
+        <link rel='icon' href='icons/128.png' sizes='128x128' />
+        <link rel='icon' href='icons/32.png' sizes='32x32' />
+        <meta name='mobile-web-app-capable' content='yes' />
+        <meta name='x5-orientation' content='portrait' />
+        <meta name='screen-orientation' content='portrait' />
+        <meta name='x5-page-mode' content='app' />
+        <meta name='browsermode' content='application' />
         <body>
           <Main />
           <NextScript />
