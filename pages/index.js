@@ -179,7 +179,13 @@ export default function Home({ rep: { rep, setRep } }) {
               ref={register({ required: true })}
               className='consent-check'
             />
-            I consent to the collection/use of the provided details for informational purposes
+            <div className='privacy-notice'>
+              I have read and understood the
+              {' '}
+              <a href='/Privacy notice.pdf'>privacy notice</a>
+              {' '}
+              and I consent to the collection of the provided details for informational purposes.
+            </div>
           </motion.label>
           {
             errors.consent && <span className='error-message'>Check the box above to proceed</span>

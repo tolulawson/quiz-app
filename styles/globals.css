@@ -282,8 +282,13 @@ a {
 }
 .init-page .init-form .input-fields .consent .consent-check {
   margin-right: 0.9rem;
-  width: 1.9rem;
-  height: 1.9rem;
+  width: 3rem;
+  height: 3rem;
+}
+.init-page .init-form .input-fields .consent .privacy-notice a {
+  font-weight: 700;
+  color: #0044ff;
+  text-decoration: underline;
 }
 .init-page .init-form .input-fields .error-message {
   color: #f44336;

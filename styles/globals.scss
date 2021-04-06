@@ -227,8 +227,16 @@ a {
 
         .consent-check {
           margin-right: 0.9rem;
-          width: 1.9rem;
-          height: 1.9rem;
+          width: 3rem;
+          height: 3rem;
+        }
+
+        .privacy-notice {
+          a {
+            font-weight: 700;
+            color: #0044ff;
+            text-decoration: underline;
+          }
         }
       }
 
