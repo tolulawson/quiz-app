@@ -12,7 +12,7 @@ export default function Leaderboard() {
   const router = useRouter();
 
   React.useEffect(() => {
-    readFromFirebase({ collection: 'quiz' })
+    readFromFirebase({ collection: 'quiz-sample' })
       .then((data) => {
         const sortedData = data.sort((a, b) => {
           const div = 10 ** Math.max(String(b.time).length, String(a.time).length);
@@ -42,7 +42,8 @@ export default function Leaderboard() {
         !leaderboardData
           ? <motion.img src='/img/loaders.svg' className='spinner' />
           : !leaderboardData.length
-            ? <motion.p className='no-records'>No records found</motion.p>
+            // eslint-disable-next-line react/no-unescaped-entities
+            ? <motion.p className='no-records'>It's lonely out here</motion.p>
             : (
               <motion.div className='leaderboard-table'>
                 {

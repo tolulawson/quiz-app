@@ -1,5 +1,6 @@
+/* eslint-disable max-len */
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Quiz from 'react-quiz-component-remix';
@@ -7,30 +8,29 @@ import { quiz } from '../js/questions';
 import { formatTime } from '../js/utils';
 import PlayerContext from '../js/playerContext';
 import { addToFirebase, firebase } from './index';
-import PlatformChecker from '../js/platformChecker';
 
-const renderCustomResultPage = (obj) => {
-  const resultChildren = (score) => (
-    <>
-      <span className='emoji'>
-        {
-          score >= 50 ? <img src='img/happy.gif' alt='happy emoji' /> : <img src='img/sad.gif' alt='sad emoji' />
-        }
-      </span>
-      <span className='result-text'>
-        {
-          score >= 50 ? `Congratulations! You scored ${score}%` : `You scored ${score}%`
-        }
-      </span>
-    </>
-  );
-  ReactDOM.render(
-    React.createElement('div', {
-      className: 'result',
-    }, resultChildren(obj.correctPoints)),
-    document.querySelector('.questionWrapper'),
-  );
-};
+// const renderCustomResultPage = (obj) => {
+//   const resultChildren = (score) => (
+//     <>
+//       <span className='emoji'>
+//         {
+//           score >= 50 ? <img src='img/happy.gif' alt='happy emoji' /> : <img src='img/sad.gif' alt='sad emoji' />
+//         }
+//       </span>
+//       <span className='result-text'>
+//         {
+//           score >= 50 ? `Congratulations! You scored ${score}%` : `You scored ${score}%`
+//         }
+//       </span>
+//     </>
+//   );
+//   ReactDOM.render(
+//     React.createElement('div', {
+//       className: 'result',
+//     }, resultChildren(obj.correctPoints)),
+//     document.querySelector('.questionWrapper'),
+//   );
+// };
 
 export default function Game({ rep: { rep } }) {
   const questionIndexes = [];
@@ -81,7 +81,7 @@ export default function Game({ rep: { rep } }) {
     setFinished(true);
     clearInterval(timerRef.current);
     addToFirebase({
-      collection: 'quiz',
+      collection: 'quiz-sample',
       data: {
         id: player.id,
         name: player.name,
@@ -98,7 +98,6 @@ export default function Game({ rep: { rep } }) {
 
   return (
     <motion.div className='game-page'>
-      <PlatformChecker />
       {
         player.name && (
         <>
@@ -119,8 +118,6 @@ export default function Game({ rep: { rep } }) {
               shuffle
               onStart={handleQuizStart}
               onComplete={handleQuizEnd}
-              showDefaultResult={false}
-              customResultPage={renderCustomResultPage}
             />
             )
           }
