@@ -21,6 +21,7 @@ const firebaseConfig = {
   measurementId: 'G-6MW35HFTT1',
 };
 
+
 let db;
 
 if (!firebase.apps.length) {
