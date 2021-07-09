@@ -1,32 +1,49 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import PlayerContext from '../js/playerContext';
-import leaderboard from '../server/leaderboard';
+// import leaderboard from '../server/leaderboard';
 
-export default function Leaderboard({ leaderboardData }) {
-  // const [leaderboardData, setLeaderboardData] = React.useState(null);
+export default function Leaderboard() {
+  const [leaderboardData, setLeaderboardData] = React.useState(null);
   const { player } = React.useContext(PlayerContext);
 
-  // React.useEffect(() => {
-  //   readFromFirebase({ collection: 'quiz-sample' })
-  //     .then((data) => {
-  //       const sortedData = data.sort((a, b) => {
-  //         const div = 10 ** Math.max(String(b.time).length, String(a.time).length);
-  //         return (
-  //           b.result.correctPoints - (b.time / div)) - (a.result.correctPoints - (a.time / div)
-  //         );
-  //       })
-  //         .map((record, index) => ({ ...record, rank: index + 1 }));
-  //       const currentResult = sortedData.filter((record) => record.id === player.id)[0];
+  React.useEffect(() => {
+    // readFromFirebase({ collection: 'quiz-sample' })
+    //   .then((data) => {
+    //     const sortedData = data.sort((a, b) => {
+    //       const div = 10 ** Math.max(String(b.time).length, String(a.time).length);
+    //       return (
+    //         b.result.correctPoints - (b.time / div)) - (a.result.correctPoints - (a.time / div)
+    //       );
+    //     })
+    //       .map((record, index) => ({ ...record, rank: index + 1 }));
+    //     const currentResult = sortedData.filter((record) => record.id === player.id)[0];
 
-  //       const slicedData = sortedData.slice(0, 10);
-  //       if (player.id && !slicedData.filter((record) => record.id === player.id).length) {
-  //         slicedData.push(currentResult);
-  //       }
-  //       setLeaderboardData(slicedData);
-  //     })
-  //     .catch(() => {});
+    //     const slicedData = sortedData.slice(0, 10);
+    //     if (player.id && !slicedData.filter((record) => record.id === player.id).length) {
+    //       slicedData.push(currentResult);
+    //     }
+    //     setLeaderboardData(slicedData);
+    //   })
+    //   .catch(() => {});
+
+  //   fetch('api/leaderboard', {
+  //     method: 'Post',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       ...player,
+  //       score: result.correctPoints,
+  //       timeTaken,
+  //     }),
+  //   }).then((res) => res.json())
+  //     .then((data) => setPlayer((currentPlayer) => ({
+  //       ...currentPlayer,
+  //       id: data.id,
+  //     })));
   // }, []);
+
   return (
     <div className='leaderboard-page'>
       <div className='header'>
@@ -60,11 +77,11 @@ export default function Leaderboard({ leaderboardData }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { results: leaderboardData } = await leaderboard(context.req, context.res);
-  return {
-    props: {
-      leaderboardData,
-    },
-  };
-}
+// export async function getServerSideProps(context) {
+//   const { results: leaderboardData } = await leaderboard(context.req, context.res);
+//   return {
+//     props: {
+//       leaderboardData,
+//     },
+//   };
+// }
