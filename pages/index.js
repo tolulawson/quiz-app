@@ -1,5 +1,3 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable max-len */
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
@@ -39,7 +37,7 @@ export default function Home() {
         <div className='input-fields'>
           <input
             type='text'
-            placeholder='Enter your full name'
+            placeholder='Enter a name'
             autoCapitalize='words'
             name='name'
             ref={register({ required: true })}
@@ -54,13 +52,13 @@ export default function Home() {
           Start
         </button>
       </form>
-      <Link href='/leaderboard'>
-        <a href='/leaderboard'>
-          <img src='/img/leaderboard.svg' alt='home button' className='menu-button' />
-        </a>
-      </Link>
+      <footer className='footer'>
+        <Link href='/leaderboard'>
+          <a href='/leaderboard'>
+            <img src='/img/leaderboard.svg' alt='home button' className='menu-button' />
+          </a>
+        </Link>
+      </footer>
     </div>
   );
 }
-
-// export { firebase, addToFirebase, readFromFirebase };

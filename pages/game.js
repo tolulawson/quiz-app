@@ -58,8 +58,7 @@ export default function Game() {
       }
     }
     questionIndexes.forEach((index) => selectedQuestions.push(quiz.questions[index]));
-    // quiz.questions = selectedQuestions;
-    selectedQuestions.length = 1;
+    // selectedQuestions.length = 1;
     setQuestions({ ...quiz, questions: selectedQuestions });
   }, []);
 
@@ -142,9 +141,13 @@ export default function Game() {
         </>
         )
       }
-      <a href='/'>
-        <img src='/img/home.svg' alt='home button' className='menu-button' />
-      </a>
+      <footer className='footer'>
+        <Link href='/'>
+          <a href='/'>
+            <img src='/img/home.svg' alt='home button' className='menu-button' />
+          </a>
+        </Link>
+      </footer>
     </div>
   );
 }

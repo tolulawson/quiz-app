@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 const formatTime = (t) => {
   const secNum = parseInt(t, 10); // don't forget the second param
   let hours = Math.floor(secNum / 3600);
@@ -10,33 +11,6 @@ const formatTime = (t) => {
   return `${minutes}:${seconds}`;
 };
 
-const generateUUID = () => {
-  let d = new Date().getTime();
-  let d2 = (performance && performance.now && (performance.now() * 1000)) || 0;
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    let r = Math.random() * 16;
-    if (d > 0) {
-      r = (d + r)%16 | 0;
-      d = Math.floor(d / 16);
-    } else {
-      r = (d2 + r)%16 | 0;
-      d2 = Math.floor(d2 / 16);
-    }
-    return (c === 'x' ? r : (r & (0x3 | 0x8))).toString(16);
-  });
-};
-
-const isInstalled = () => {
-  if (process.browser) {
-    if (window.location.hostname === 'localhost' || window.location.hostname === '192.168.100.60') {
-      return true;
-    }
-  }
-  if (typeof window !== 'undefined') {
-    return ('standalone' in window.navigator) && (window.navigator.standalone);
-  }
-};
-
 export {
-  formatTime, generateUUID, isInstalled,
+  formatTime,
 };

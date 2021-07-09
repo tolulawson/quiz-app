@@ -3,6 +3,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: "SF UI Display", sans-serif;
+  min-height: 100%;
+  position: relative;
 }
 
 html {
@@ -15,6 +17,11 @@ html {
   color: #fff;
 }
 
+#__next {
+  height: 100%;
+  min-height: 100%;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -25,68 +32,22 @@ a {
           box-sizing: border-box;
 }
 
-.menu-button {
+footer {
+  width: 100%;
+  padding-left: 5%;
   position: absolute;
-  bottom: max(3.5vh);
-  width: min(5vw, 2.3rem);
-  opacity: 0.3;
-  left: 4vw;
-  cursor: pointer;
+  bottom: 0;
 }
-.menu-button.settings {
+footer .menu-button {
+  width: calc(2rem + 1vw);
+  opacity: 0.3;
+  cursor: pointer;
+  justify-self: flex-start;
+  padding-bottom: 1rem;
+}
+footer .menu-button.settings {
   left: max(9vw, 5.5rem);
   width: min(4.5vw, 2.2rem);
-}
-
-.platform-check-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  background: #2E1D5F;
-}
-.platform-check-container .platform-check {
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding-top: 15vh;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin: auto;
-}
-.platform-check-container .platform-check .logo {
-  position: fixed;
-  bottom: 5vh;
-  width: 12rem;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-}
-.platform-check-container .platform-check h3 {
-  font-size: 2.2rem;
-  font-weight: 300;
-}
-.platform-check-container .platform-check ol {
-  font-size: 1.3rem;
-  font-weight: 300;
-  margin-top: 2rem;
-  list-style-position: inside;
-  padding: 0;
-}
-.platform-check-container .platform-check ol li {
-  margin-bottom: 0.5rem;
-}
-.platform-check-container .platform-check ol li img {
-  width: 1.6rem;
-  margin-right: 0.3rem;
 }
 
 .init-page {
@@ -103,79 +64,11 @@ a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
-}
-.init-page .rep-setup {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-.init-page .rep-setup h3 {
-  font-weight: 400;
-  font-size: 1.7rem;
-  margin-bottom: 3rem;
-}
-.init-page .rep-setup .rep-submit {
-  -webkit-appearance: none;
-}
-.init-page .rep-setup .rep-input {
-  background: #FFFFFF;
-  border: 1px solid #E0E0E0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 2rem;
-  line-height: 3rem;
-  width: 50%;
-  font-size: 1.1rem;
-  padding: 0 1rem;
-  text-align: center;
-  color: #605d5d;
-  margin-bottom: 1rem;
-  -webkit-appearance: none;
-}
-.init-page .rep-setup .rep-input::-webkit-input-placeholder {
-  color: #b6b2b2;
-}
-.init-page .rep-setup .rep-input::-moz-placeholder {
-  color: #b6b2b2;
-}
-.init-page .rep-setup .rep-input:-ms-input-placeholder {
-  color: #b6b2b2;
-}
-.init-page .rep-setup .rep-input::-ms-input-placeholder {
-  color: #b6b2b2;
-}
-.init-page .rep-setup .rep-input::placeholder {
-  color: #b6b2b2;
-}
-.init-page .rep-setup .rep-input:focus {
-  -webkit-box-shadow: 0 0 0 1.5pt #5A37BC;
-          box-shadow: 0 0 0 1.5pt #5A37BC;
-  outline: none;
-}
-.init-page .rep-setup .error-message {
-  color: #f44336;
-  font-size: 0.7rem;
-  margin: -0.2rem 0 0.5rem;
-  text-align: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
 }
 .init-page .init-form {
   max-width: 30rem;
@@ -197,15 +90,14 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 4rem 5% 2rem;
+  padding: 2rem 5% 2rem;
   border-radius: 1.5rem;
   -webkit-filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.13));
           filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.13));
-  margin-top: -3vw;
 }
 .init-page .init-form .quiz-logo {
   width: 40%;
-  min-width: 150px;
+  min-width: 120px;
 }
 .init-page .init-form .input-fields {
   display: -webkit-box;
@@ -221,7 +113,7 @@ a {
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
   width: 100%;
-  margin: 8.5rem 0 1rem;
+  margin: 7rem 0 0;
 }
 .init-page .init-form .input-fields .text {
   background: #FFFFFF;
@@ -260,40 +152,16 @@ a {
           box-shadow: 0 0 0 1.5pt #5A37BC;
   outline: none;
 }
-.init-page .init-form .input-fields .consent {
-  color: #605d5d;
-  font-weight: 300;
-  margin-top: 1rem;
-  font-size: 0.8rem;
-  margin-bottom: 0.9rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.init-page .init-form .input-fields .consent .consent-check {
-  margin-right: 0.9rem;
-  width: 3rem;
-  height: 3rem;
-}
-.init-page .init-form .input-fields .consent .privacy-notice a {
-  font-weight: 700;
-  color: #0044ff;
-  text-decoration: underline;
-}
 .init-page .init-form .input-fields .error-message {
   color: #f44336;
   font-size: 0.7rem;
-  margin: -0.2rem 0 0.5rem;
   text-align: center;
 }
 .init-page .init-form .submit-button {
   background: #5A37BC;
   border-radius: 28px;
   line-height: 3.5rem;
-  padding: 0 3rem;
+  padding: 0 2.5rem;
   border: none;
   color: #fff;
   width: 70%;
@@ -301,6 +169,7 @@ a {
   font-weight: 900;
   position: relative;
   font-size: 1.2rem;
+  margin-top: 1.5rem;
 }
 .init-page .init-form .submit-button::after {
   content: "";
@@ -330,8 +199,11 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
 }
 .game-page .hud {
   display: -webkit-box;
@@ -343,7 +215,7 @@ a {
   width: 90%;
   margin: 3rem 0 10vh;
   font-weight: 700;
-  font-size: 2.3rem;
+  font-size: calc(1.5rem + 1vw);
 }
 .game-page .hud .hud-item {
   display: -webkit-box;
@@ -352,13 +224,14 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  text-overflow: ellipsis;
+  max-width: 50%;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .game-page .hud .hud-item img {
-  width: 2.5rem;
+  width: calc(1.5rem + 1vw);
   margin-right: 0.8rem;
-}
-.game-page .hud .hud-item.name-group img {
-  width: 2.3rem;
 }
 .game-page .hud .hud-item.time-group {
   -webkit-font-feature-settings: "tnum";
@@ -366,14 +239,15 @@ a {
   font-variant-numeric: tabular-nums;
 }
 .game-page .react-quiz-container {
-  max-width: 670px;
+  max-width: 750px;
   width: 80%;
+  margin-bottom: 3rem;
 }
 .game-page .react-quiz-container > div:nth-child(1) h2 {
-  font-size: 3.5rem;
+  font-size: calc(2rem + 2vw);
 }
 .game-page .react-quiz-container > div:nth-child(1) > div:nth-child(2n) {
-  font-size: 2rem;
+  font-size: calc(1rem + 1vw);
   margin-bottom: 5rem;
 }
 .game-page .react-quiz-container > div:nth-child(1) > div:nth-child(2n+1) {
@@ -442,7 +316,7 @@ a {
   margin: 0 0 3rem;
 }
 .game-page .react-quiz-container .questionWrapper .questionWrapperBody h3 p {
-  font-size: 2.5rem;
+  font-size: calc(1.5rem + 1vw);
   font-weight: 400;
   text-align: left;
   margin: 0;
@@ -450,9 +324,9 @@ a {
 .game-page .react-quiz-container .questionWrapper .questionWrapperBody .questionModal + div {
   position: absolute;
   top: 0.5rem;
-  left: -4vw;
+  left: calc(-1rem - 1vw);
   overflow-x: hidden;
-  font-size: 2.5vw;
+  font-size: calc(1rem + 0.8vw);
   z-index: -1;
 }
 .game-page .react-quiz-container .questionWrapper .questionWrapperBody .tag-container {
@@ -466,15 +340,16 @@ a {
   border-radius: 0.3rem;
   border: none;
   text-align: left;
-  padding: 0.65rem 0.65rem 0.65rem 3.5rem;
+  padding: 0.6rem 0.6rem 0.6rem 3rem;
   font-size: 1.32rem;
   font-weight: normal;
   color: #252424;
   position: relative;
+  cursor: pointer;
 }
 .game-page .react-quiz-container .questionWrapper .questionWrapperBody .btn:not(.nextQuestionBtn):nth-child(4n+1)::before {
   position: absolute;
-  left: 0.4rem;
+  left: 0.35rem;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -498,7 +373,7 @@ a {
 }
 .game-page .react-quiz-container .questionWrapper .questionWrapperBody .btn:not(.nextQuestionBtn):nth-child(4n+2)::before {
   position: absolute;
-  left: 0.4rem;
+  left: 0.35rem;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -522,7 +397,7 @@ a {
 }
 .game-page .react-quiz-container .questionWrapper .questionWrapperBody .btn:not(.nextQuestionBtn):nth-child(4n+3)::before {
   position: absolute;
-  left: 0.4rem;
+  left: 0.35rem;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -546,7 +421,7 @@ a {
 }
 .game-page .react-quiz-container .questionWrapper .questionWrapperBody .btn:not(.nextQuestionBtn):nth-child(4n+4)::before {
   position: absolute;
-  left: 0.4rem;
+  left: 0.35rem;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -796,9 +671,9 @@ a {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 0 1.5rem;
+  padding: 0 1.2rem;
   width: 100%;
-  font-size: 1.18rem;
+  font-size: calc(0.95rem + 0.4vw);
 }
 .leaderboard-page .leaderboard-table .leaderboard-row.new {
   background: rgba(90, 55, 188, 0.93);
@@ -812,7 +687,11 @@ a {
   display: block;
 }
 .leaderboard-page .leaderboard-table .leaderboard-row span.serial {
-  width: 7%;
+  width: 9%;
+  white-space: nowrap;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 .leaderboard-page .leaderboard-table .leaderboard-row span.name {
   width: 63%;
@@ -823,11 +702,11 @@ a {
 }
 .leaderboard-page .leaderboard-table .leaderboard-row span.points {
   width: 15%;
-  text-align: center;
+  text-align: left;
 }
 .leaderboard-page .leaderboard-table .leaderboard-row span.time {
   width: 15%;
-  text-align: center;
+  text-align: right;
 }
 .leaderboard-page .spinner {
   width: 3rem;

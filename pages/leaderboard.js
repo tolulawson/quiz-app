@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
+import Link from 'next/link';
 import PlayerContext from '../js/playerContext';
 
 export default function Leaderboard() {
@@ -40,9 +41,13 @@ export default function Leaderboard() {
               </div>
             )
       }
-      <a href='/'>
-        <img src='/img/home.svg' alt='home button' className='menu-button' />
-      </a>
+      <footer className='footer'>
+        <Link href='/'>
+          <a href='/'>
+            <img src='/img/home.svg' alt='home button' className='menu-button' />
+          </a>
+        </Link>
+      </footer>
     </div>
   );
 }
