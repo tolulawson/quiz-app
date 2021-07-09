@@ -18,7 +18,7 @@ export default async function leaderboard(req) {
     const gamesRef = db.collection('games');
     const { id } = req;
     try {
-      const snapshot = await gamesRef.orderBy('score', 'desc').orderBy('timeTaken').orderBy('name').limit(10)
+      const snapshot = await gamesRef.orderBy('score', 'desc').orderBy('timeTaken').orderBy('name')
         .get();
       let games = [];
       snapshot.forEach((doc) => {
@@ -26,12 +26,14 @@ export default async function leaderboard(req) {
         games.push({ ...rest, id: doc.id });
       });
       games = games.map((game, index) => ({ ...game, rank: index + 1 }));
-      // if (id) {
-      //   if (! games.some((game) => game.id === id)) {
-      //     const idGame = gamesRef.doc(id)
-      //   }
-      // }
-      return ({ games, statusCode: 200 });
+      const slicedGames = games.slice(0, 10);
+      if (id) {
+        if (!slicedGames.some((game) => game.id === id)) {
+          const idGame = games.find((game) => game.id === id);
+          slicedGames.push(idGame);
+        }
+      }
+      return ({ games: slicedGames, statusCode: 200 });
     } catch (e) {
       return ({ Error: e.details, statusCode: 500 });
     }

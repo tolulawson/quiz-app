@@ -80,7 +80,7 @@ export default function Game() {
     setFinished(true);
     clearInterval(timerRef.current);
     fetch('api/leaderboard', {
-      method: 'Post',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },

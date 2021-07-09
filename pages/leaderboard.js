@@ -1,48 +1,18 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import PlayerContext from '../js/playerContext';
-// import leaderboard from '../server/leaderboard';
 
 export default function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = React.useState(null);
   const { player } = React.useContext(PlayerContext);
 
   React.useEffect(() => {
-    // readFromFirebase({ collection: 'quiz-sample' })
-    //   .then((data) => {
-    //     const sortedData = data.sort((a, b) => {
-    //       const div = 10 ** Math.max(String(b.time).length, String(a.time).length);
-    //       return (
-    //         b.result.correctPoints - (b.time / div)) - (a.result.correctPoints - (a.time / div)
-    //       );
-    //     })
-    //       .map((record, index) => ({ ...record, rank: index + 1 }));
-    //     const currentResult = sortedData.filter((record) => record.id === player.id)[0];
-
-    //     const slicedData = sortedData.slice(0, 10);
-    //     if (player.id && !slicedData.filter((record) => record.id === player.id).length) {
-    //       slicedData.push(currentResult);
-    //     }
-    //     setLeaderboardData(slicedData);
-    //   })
-    //   .catch(() => {});
-
-  //   fetch('api/leaderboard', {
-  //     method: 'Post',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       ...player,
-  //       score: result.correctPoints,
-  //       timeTaken,
-  //     }),
-  //   }).then((res) => res.json())
-  //     .then((data) => setPlayer((currentPlayer) => ({
-  //       ...currentPlayer,
-  //       id: data.id,
-  //     })));
-  // }, []);
+    fetch(`api/leaderboard?id=${player.id ? player.id : ''}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setLeaderboardData(data.games);
+      });
+  }, []);
 
   return (
     <div className='leaderboard-page'>
@@ -53,14 +23,14 @@ export default function Leaderboard() {
       {
         !leaderboardData
           ? <img src='/img/loaders.svg' className='spinner' alt='Spinner' />
-          : !leaderboardData.length
+          : leaderboardData.length < 1
             ? <p className='no-records'>It&apos;s lonely out here</p>
             : (
               <div className='leaderboard-table'>
                 {
-                  leaderboardData.map((record, index) => (
+                  leaderboardData.map((record) => (
                     <div className={record.id === player.id ? 'leaderboard-row new' : 'leaderboard-row'} key={record.id}>
-                      <span className='serial'>{`${index + 1}.`}</span>
+                      <span className='serial'>{`${record.rank}.`}</span>
                       <span className='name'>{record.name}</span>
                       <span className='points'>{`${record.score} %`}</span>
                       <span className='time'>{`${record.timeTaken}s`}</span>
@@ -76,12 +46,3 @@ export default function Leaderboard() {
     </div>
   );
 }
-
-// export async function getServerSideProps(context) {
-//   const { results: leaderboardData } = await leaderboard(context.req, context.res);
-//   return {
-//     props: {
-//       leaderboardData,
-//     },
-//   };
-// }
