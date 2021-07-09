@@ -25,13 +25,6 @@ a {
           box-sizing: border-box;
 }
 
-.sanofi-logo {
-  position: absolute;
-  bottom: 3.5vh;
-  width: 19vh;
-  min-width: 9rem;
-}
-
 .menu-button {
   position: absolute;
   bottom: max(3.5vh);
@@ -371,9 +364,6 @@ a {
   -webkit-font-feature-settings: "tnum";
           font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
-}
-.game-page .sanofi-logo {
-  width: 28vh;
 }
 .game-page .react-quiz-container {
   max-width: 670px;

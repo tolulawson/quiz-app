@@ -27,7 +27,6 @@ export default function PlatformChecker() {
               {' '}
               to begin
             </h3>
-            <img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='logo' />
           </div>
         </div>
       )
@@ -42,7 +41,6 @@ export default function PlatformChecker() {
                 {' '}
                 to begin.
               </h3>
-              <img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
             </div>
           </div>
         )
@@ -68,7 +66,6 @@ export default function PlatformChecker() {
                     <strong>Add to Home Screen</strong>
                   </li>
                 </ol>
-                <img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
               </div>
             </div>
           )

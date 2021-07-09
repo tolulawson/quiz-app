@@ -12,13 +12,13 @@ class MyDocument extends Document {
     return (
       <Html manifest='/cache.manifest'>
         <Head />
-        <title>Sanofi Quiz</title>
+        <title>React Quiz</title>
         <link href='https://fonts.cdnfonts.com/css/sf-ui-display' rel='stylesheet' />
         <meta charSet='utf-8' />
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
         <meta name='viewport' content='viewport-fit=cover' />
-        <meta name='description' content='An app for administering quizzes by Sanofi medical representatives to their stakeholders.' />
+        <meta name='description' content='An app for Quizzes.' />
         <meta name='theme-color' content='#2E1D5F' />
         <link href='manifest.json' rel='manifest' />
         <meta content='@tolulawson' name='author' />

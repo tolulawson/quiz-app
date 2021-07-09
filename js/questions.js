@@ -145,7 +145,7 @@ export const quiz = {
     }
     
   ],
-  "quizTitle": "Sanofi Antibiotics Quiz",
+  "quizTitle": "React Quiz",
   "quizSynopsis": "Tap the button below to get started",
   "appLocale": {
     "landingHeaderText": "<questionLength> Questions",

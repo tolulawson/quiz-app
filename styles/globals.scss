@@ -25,12 +25,6 @@ a {
   box-sizing: border-box;
 }
 
-.sanofi-logo {
-  position: absolute;
-  bottom: 3.5vh;
-  width: 19vh;
-  min-width: 9rem;
-}
 
 .menu-button {
   position: absolute;
@@ -316,10 +310,6 @@ a {
         font-variant-numeric: tabular-nums;
       }
     }
-  }
-
-  .sanofi-logo {
-    width: 28vh;
   }
 
   .react-quiz-container {

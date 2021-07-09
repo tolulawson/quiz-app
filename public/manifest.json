@@ -1,6 +1,6 @@
 {
-  "name": "Sanofi Quiz",
-  "short_name": "Sanofi Quiz",
+  "name": "Quiz App",
+  "short_name": "Quiz App",
   "icons": [
     {
       "src": "icons/32.png",
@@ -16,7 +16,7 @@
       "sizes": "512x512"
     }
   ],
-  "description": "An app for administering quizzes by Sanofi medical representatives to their stakeholders",
+  "description": "An app for administering quizzes",
   "display": "standalone",
   "start_url": "/",
   "orientation": "portrait",
