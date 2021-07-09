@@ -38,3 +38,4 @@ yarn-error.log*
 **/public/sw.js.map
 
 firestore-debug.log
+.env

@@ -1,13 +1,14 @@
 /* eslint-disable max-len */
 import React from 'react';
 // import ReactDOM from 'react-dom';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import Quiz from 'react-quiz-component-remix';
 import { quiz } from '../js/questions';
 import { formatTime } from '../js/utils';
 import PlayerContext from '../js/playerContext';
-import { addToFirebase, firebase } from './index';
+// import { addToFirebase, firebase } from './index';
 
 // const renderCustomResultPage = (obj) => {
 //   const resultChildren = (score) => (
@@ -32,12 +33,12 @@ import { addToFirebase, firebase } from './index';
 //   );
 // };
 
-export default function Game({ rep: { rep } }) {
+export default function Game() {
   const questionIndexes = [];
   const selectedQuestions = [];
   const router = useRouter();
 
-  const { player } = React.useContext(PlayerContext);
+  const { player, setPlayer } = React.useContext(PlayerContext);
 
   const [timeTaken, setTimeTaken] = React.useState(0);
   const [, setStart] = React.useState(false);
@@ -58,9 +59,7 @@ export default function Game({ rep: { rep } }) {
     }
     questionIndexes.forEach((index) => selectedQuestions.push(quiz.questions[index]));
     // quiz.questions = selectedQuestions;
-    // quiz.questions.length = 1;
-    // eslint-disable-next-line no-debugger
-    debugger;
+    selectedQuestions.length = 1;
     setQuestions({ ...quiz, questions: selectedQuestions });
   }, []);
 
@@ -80,37 +79,38 @@ export default function Game({ rep: { rep } }) {
     }
     setFinished(true);
     clearInterval(timerRef.current);
-    addToFirebase({
-      collection: 'quiz-sample',
-      data: {
-        id: player.id,
-        name: player.name,
-        pharmacy: player.pharmacy,
-        email: player.email,
-        result,
-        time: timeTaken,
-        timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-        rep,
+    fetch('api/leaderboard', {
+      method: 'Post',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    })
-      .catch(() => {});
+      body: JSON.stringify({
+        ...player,
+        score: result.correctPoints,
+        timeTaken,
+      }),
+    }).then((res) => res.json())
+      .then((data) => setPlayer((currentPlayer) => ({
+        ...currentPlayer,
+        id: data.id,
+      })));
   };
 
   return (
-    <motion.div className='game-page'>
+    <div className='game-page'>
       {
         player.name && (
         <>
-          <motion.div className='hud'>
-            <motion.div className='name-group hud-item'>
-              <motion.img src='/img/person.svg' />
-              {player && player.name}
-            </motion.div>
-            <motion.div className='time-group hud-item'>
-              <motion.img src='/img/alarm.svg' className='alarm' />
+          <div className='hud'>
+            <div className='name-group hud-item'>
+              <img src='/img/person.svg' alt='person icon' />
+              {player.name}
+            </div>
+            <div className='time-group hud-item'>
+              <img src='/img/alarm.svg' alt='clock icon' className='alarm' />
               {formatTime(timeTaken)}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
           {
             questions && (
             <Quiz
@@ -123,23 +123,28 @@ export default function Game({ rep: { rep } }) {
           }
           {
             finished && (
-              <motion.div className='game-end-buttons'>
-                <motion.button className='action-btn refresh' onClick={() => router.push('/leaderboard')}>
-                  <motion.img src='/img/leaderboard.svg' />
-                  Leaderboard
-                </motion.button>
-                <motion.button className='action-btn refresh' onClick={() => router.push('/')}>
-                  <motion.img src='/img/home.svg' />
-                  Home
-                </motion.button>
-              </motion.div>
+              <div className='game-end-buttons'>
+                <Link href='/leaderboard'>
+                  <a className='action-btn refresh' href='/leaderboard'>
+                    <img src='/img/leaderboard.svg' alt='Leaderboard icon' />
+                    Leaderboard
+                  </a>
+                </Link>
+                <Link href='/'>
+                  <a className='action-btn refresh' href='/'>
+                    <img src='/img/home.svg' alt='Home icon' />
+                    Home
+                  </a>
+                </Link>
+              </div>
             )
           }
-          <motion.img src='/img/sanofi_logo_white.svg' alt='sanofi logo' className='sanofi-logo' />
         </>
         )
       }
-      <motion.img src='/img/home.svg' alt='home button' className='menu-button' onClick={() => router.push('/')} />
-    </motion.div>
+      <a href='/'>
+        <img src='/img/home.svg' alt='home button' className='menu-button' />
+      </a>
+    </div>
   );
 }
