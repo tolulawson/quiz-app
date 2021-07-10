@@ -8,30 +8,6 @@ import Quiz from 'react-quiz-component-remix';
 import { quiz } from '../js/questions';
 import { formatTime } from '../js/utils';
 import PlayerContext from '../js/playerContext';
-// import { addToFirebase, firebase } from './index';
-
-// const renderCustomResultPage = (obj) => {
-//   const resultChildren = (score) => (
-//     <>
-//       <span className='emoji'>
-//         {
-//           score >= 50 ? <img src='img/happy.gif' alt='happy emoji' /> : <img src='img/sad.gif' alt='sad emoji' />
-//         }
-//       </span>
-//       <span className='result-text'>
-//         {
-//           score >= 50 ? `Congratulations! You scored ${score}%` : `You scored ${score}%`
-//         }
-//       </span>
-//     </>
-//   );
-//   ReactDOM.render(
-//     React.createElement('div', {
-//       className: 'result',
-//     }, resultChildren(obj.correctPoints)),
-//     document.querySelector('.questionWrapper'),
-//   );
-// };
 
 export default function Game() {
   const questionIndexes = [];
@@ -52,7 +28,7 @@ export default function Game() {
     }
 
     while (questionIndexes.length < 10) {
-      const r = Math.floor(Math.random() * 12);
+      const r = Math.floor(Math.random() * quiz.questions.length);
       if (questionIndexes.indexOf(r) === -1) {
         questionIndexes.push(r);
       }
