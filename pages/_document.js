@@ -1,6 +1,7 @@
 import Document, {
   Html, Head, Main, NextScript,
 } from 'next/document';
+import Script from 'next/script';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -12,7 +13,7 @@ class MyDocument extends Document {
     return (
       <Html manifest='/cache.manifest'>
         <Head />
-        <title>React Quiz</title>
+        <title>React iQ Quiz</title>
         <link href='https://fonts.cdnfonts.com/css/sf-ui-display' rel='stylesheet' />
         <meta charSet='utf-8' />
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
@@ -44,6 +45,19 @@ class MyDocument extends Document {
           media='screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)'
           href='icons/1536x2048.png'
         />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_googleAnalyticsId}`}
+          strategy='lazyOnload'
+        />
+        <Script strategy='lazyOnload'>
+          {
+            `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', '${process.env.NEXT_PUBLIC_googleAnalyticsId}');`
+          }
+        </Script>
         <body>
           <Main />
           <NextScript />
