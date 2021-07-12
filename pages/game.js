@@ -1,13 +1,12 @@
 /* eslint-disable max-len */
 import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Quiz from 'react-quiz-component-remix';
 import { quiz } from '../js/questions';
 import { formatTime } from '../js/utils';
 import PlayerContext from '../js/playerContext';
+import PageHelmet from '../components/pageHelmet';
 
 export default function Game() {
   const questionIndexes = [];
@@ -72,8 +71,9 @@ export default function Game() {
   };
 
   return (
-    <div className='game-page'>
-      {
+    <PageHelmet>
+      <div className='game-page'>
+        {
         player.name && (
         <>
           <div className='hud'>
@@ -117,13 +117,14 @@ export default function Game() {
         </>
         )
       }
-      <footer className='footer'>
-        <Link href='/'>
-          <a href='/'>
-            <img src='/img/home.svg' alt='home button' className='menu-button' />
-          </a>
-        </Link>
-      </footer>
-    </div>
+        <footer className='footer'>
+          <Link href='/'>
+            <a href='/'>
+              <img src='/img/home.svg' alt='home button' className='menu-button' />
+            </a>
+          </Link>
+        </footer>
+      </div>
+    </PageHelmet>
   );
 }

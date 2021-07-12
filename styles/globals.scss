@@ -36,17 +36,23 @@ footer {
   padding-left: 5%;
   position: absolute;
   bottom: 0;
-
-  .menu-button {
-    width: calc(2rem + 1vw);
-    opacity: 0.3;
-    cursor: pointer;
-    justify-self: flex-start;
-    padding-bottom: 1rem;
   
-    &.settings {
-      left: max(9vw,5.5rem);
-      width: min(4.5vw,2.2rem);
+  a {
+    display: flex;
+    align-items: center;
+
+    .menu-button {
+      width: calc(2rem + 1vw);
+      opacity: 0.3;
+      cursor: pointer;
+      justify-self: flex-start;
+      padding-bottom: 1rem;
+      margin-right: 0.5rem;
+    
+      &.settings {
+        left: max(9vw,5.5rem);
+        width: min(4.5vw,2.2rem);
+      }
     }
   }
 }

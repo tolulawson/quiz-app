@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import PlayerContext from '../js/playerContext';
+import PageHelmet from '../components/pageHelmet';
 
 export default function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = React.useState(null);
@@ -16,12 +17,13 @@ export default function Leaderboard() {
   }, []);
 
   return (
-    <div className='leaderboard-page'>
-      <div className='header'>
-        <img src='/img/leaderboard.svg' alt='Leaderboard icon' />
-        <h1>Leaderboard</h1>
-      </div>
-      {
+    <PageHelmet>
+      <div className='leaderboard-page'>
+        <div className='header'>
+          <img src='/img/leaderboard.svg' alt='Leaderboard icon' />
+          <h1>Leaderboard</h1>
+        </div>
+        {
         !leaderboardData
           ? <img src='/img/loaders.svg' className='spinner' alt='Spinner' />
           : leaderboardData.length < 1
@@ -41,13 +43,14 @@ export default function Leaderboard() {
               </div>
             )
       }
-      <footer className='footer'>
-        <Link href='/'>
-          <a href='/'>
-            <img src='/img/home.svg' alt='home button' className='menu-button' />
-          </a>
-        </Link>
-      </footer>
-    </div>
+        <footer className='footer'>
+          <Link href='/'>
+            <a href='/'>
+              <img src='/img/home.svg' alt='home button' className='menu-button' />
+            </a>
+          </Link>
+        </footer>
+      </div>
+    </PageHelmet>
   );
 }
